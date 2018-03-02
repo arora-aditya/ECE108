@@ -9,9 +9,9 @@
 \usepackage{mathrsfs}
 \usepackage{adjustbox}
 \usepackage{svg}
-\usepackage[margin=1in]{geometry} 
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
- 
+
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
@@ -20,7 +20,7 @@
 
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
- 
+
 \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{definition}[2][Definition]{\begin{trivlist}
@@ -39,17 +39,17 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
- 
+
 \begin{document}
- 
+
 % --------------------------------------------------------------
 %                         Start here
 % --------------------------------------------------------------
- 
+
 \title{Assignment 1}%replace with the appropriate homework number
 \author{Aditya Arora\\ %replace with your name
 Winter 2018} %if necessary, replace with your course title
- 
+
 \maketitle
 \begin{center}
     $Absque\ sudore\ et\ labore\ nullum\ opus\ perfectum\ est$
@@ -59,7 +59,7 @@ Winter 2018} %if necessary, replace with your course title
 Prove or Disprove:
 \begin{enumerate}[label=\alph*)]
     \item $ R \subseteq \ S\ \Leftrightarrow \ R \ \subseteq ((S-T)\cup(R\ \cap\ T)) $
-    \item $(A \cap B) \subseteq (B \cap C) \longrightarrow (A \subseteq C)$ 
+    \item $(A \cap B) \subseteq (B \cap C) \longrightarrow (A \subseteq C)$
     \item $A \in B \wedge B \in C \longrightarrow A \in C$
     \item $A \in B \wedge B \in C \longrightarrow A \subseteq C$
     \item $A \in B \wedge B \subseteq C \longrightarrow A \in C$
@@ -69,7 +69,7 @@ Prove or Disprove:
 
 %Below is the solution environment
 \begin{solution}{1}
-\item[] 
+\item[]
 \begin{enumerate}[label=\alph*)]
 \item This can be disproved by a counter example $$R = \{1,2,3,4\},\ S = \{1,2,3\},\ T = \{4\} \\$$
 The right hand side is:
@@ -106,9 +106,9 @@ Thus, the given statement is false
 Given sets $A$ and $B$, under what conditions does $A\ -\ B\ = B\ -\ A$?. Prove that this is the only conditions under which this is true
 \end{problem}
 \begin{solution}{2}
-\item[] 
+\item[]
 If $A - B$ = $B - A$ then \\ for any $x\in\ A - B$ = $B - A$ we know, $x \in A$ and $x \in B$ and $x\notin A$ and $x\notin B$.\\ That's a contradiction so $A - B$ = $B - A$ is empty.
-\\  
+\\
 Thus there are no elements in $A$ that are not in $B$. In other words $A$ is a subset of $B$. \\ Likewise there are no elements of $B$ that are in $A$. So $B$ is a subset of $A$.
 \\
 \indent So $A=B$
@@ -120,13 +120,13 @@ Thus there are no elements in $A$ that are not in $B$. In other words $A$ is a s
 \begin{problem}{3}
 \item[]
 \begin{enumerate}[label=\alph*)]
-    \item Given $ f \colon \ A \longrightarrow B$, what is the relation between $f$'s co-domain and it's image if $f$ is 
+    \item Given $ f \colon \ A \longrightarrow B$, what is the relation between $f$'s co-domain and it's image if $f$ is
     \begin{enumerate}[label=(\roman*)]
     \item injective
     \item surjective
     \item bijective
     \end{enumerate}
-    \item Given $ f \colon \ A \longrightarrow B$, what is the relation between the image of $f^{-1}$ and the domain of $f$ if $f$ is 
+    \item Given $ f \colon \ A \longrightarrow B$, what is the relation between the image of $f^{-1}$ and the domain of $f$ if $f$ is
     \begin{enumerate}[label=(\roman*)]
     \item injective
     \item surjective
@@ -193,18 +193,18 @@ We are given that $X \subseteq Y$ thus, we can say cardinality($X$) $\leq$ cardi
     SURJECTIVE:
         Range of $f(x)$ is clearly $\N$ which is same as it's co-domain.\\
     Since $f(x)$ is both injective and surjective, we can say that it is bijective
-    \item 
+    \item
     INJECTIVE:
         If $g(x_1) = g(x_2)$ then it implies that $x_1 = x_2$ since we are only restricted to the positive square root in the set of natural numbers \\
     SURJECTIVE: We cannot say it is surjective since the numbers in $\N$ which are not perfect squares do not lie in the range of $g(x)$ \\
     Thus $g(x)$ is only injective
-    \item 
+    \item
     INJECTIVE:
         If $h(x_1) = h(x_2)$ then it implies that $1/x_1 = 1/x_2 \implies x_1 = x_2$\\
     SURJECTIVE:
         Range of $h(x)$ is clearly $\Q^+$ since all numbers in $\Q^+$ also have their inverses in $\Q^+$. This implies that $h(x)$ is surjective\\
-    Since $f(x)$ is both injective and surjective, we can say that it is bijective 
-    \item 
+    Since $f(x)$ is both injective and surjective, we can say that it is bijective
+    \item
     \begin{enumerate}[label=(\roman*)]
         \item $f \circ g \colon \N \longrightarrow \N$ where $ f \circ g \colon \ x \longrightarrow x^2$
         \item $f \circ h \colon \N \longrightarrow \Q^+$ where $ f \circ h \colon \ x \longrightarrow 1/x$
@@ -224,7 +224,7 @@ Since ($X,<$) is a strict partial order, thus we can say that we will need to ad
 Adding these reflexive terms will make ($X,<^{ref}$) reflexive. \\
 But adding these terms won't affect transitivity since $xRx \wedge xRy \Rightarrow xRy$ but $xRy$ is already in the relation so the relation. Thus, ($X,<^{ref}$) also remains transitive
 \\
-Also all the new added reflexive terms will inherently exhibit anti-symmetry. 
+Also all the new added reflexive terms will inherently exhibit anti-symmetry.
 \\
 Therefore ($X,<^{ref}$) is reflexive, anti-symmetric, transitive.
 \\
@@ -259,7 +259,7 @@ Given the information above:
           Better Than Relation over G\\
            \footnotesize Note: Transitive relations excluded to preserve clarity
           \end{minipage}
-\item 
+\item
 \begin{minipage}[t]{\linewidth}
           \raggedright
           \adjustbox{valign=t}{%
@@ -350,7 +350,7 @@ Assuming this stands True for all posets:
     \item Since $x,y \in X \wedge x \subseteq \N \Rightarrow x,y \in \N \Rightarrow x+y \in \N$\\
     Also $\exists_{z \in X}\ such\  that\ x + z = y$\\
     Thus going from right to left in the given bi-directional implication and using that $z=0$ \\
-    $(x+y) + 0 = (x+y) \Leftrightarrow (x+y) \le (x+y)$\\ And since $(X, \le)$ is a partial order, $\le$ is reflexive,\\ 
+    $(x+y) + 0 = (x+y) \Leftrightarrow (x+y) \le (x+y)$\\ And since $(X, \le)$ is a partial order, $\le$ is reflexive,\\
     Therefore $\forall_{aRa}, a \in X$\\
     Therefore, $(x+y) \le (x+y) \Rightarrow (x+y) \in X$
 \end{enumerate}
@@ -358,7 +358,7 @@ Assuming this stands True for all posets:
 
 \vskip 0.5in
 
-\begin{problem}{11}Given partially ordered set $(X,\le)$, and $Y \subseteq X$, define a minimum element in $Y$ as: 
+\begin{problem}{11}Given partially ordered set $(X,\le)$, and $Y \subseteq X$, define a minimum element in $Y$ as:
 \vskip 0.1in
 $x$ is a minimum element in $Y \Leftrightarrow x \in Y \wedge \forall_{y \in Y}\ x \le y$
 \vskip 0.1in
@@ -384,14 +384,14 @@ Note the difference between this definition and that of a minimal element ($x \i
 
 \vskip 0.5in
 
-\begin{problem}{12}Given finite set A with cardinality N : 
+\begin{problem}{12}Given finite set A with cardinality N :
 \item[]
 \begin{enumerate}[label=\alph*)]
     \item How many distinct functions, $f \colon A \rightarrow A$, exist that map A to A?
     \item How many of these functions are injective? surjective? bijective?
     \item How many distinct binary relations, $R \subseteq A \times A$, exist on set A?
     \item How many of these relations are both symmetric and anti-symmetric?
-    \item How many of these relations are both symmetric, anti-symmetric, and reflexive? 
+    \item How many of these relations are both symmetric, anti-symmetric, and reflexive?
     \item How many of these relations are equivalence relations?
 \end{enumerate}
 \end{problem}
@@ -399,7 +399,7 @@ Note the difference between this definition and that of a minimal element ($x \i
 \item[]
 \begin{enumerate}[label=\alph*)]
     \item By elementary combinatorics we can say that every element in $A$ has $N$ choices for it's output, therefore total number of function = $N^N$
-    \item 
+    \item
     \begin{enumerate}[label=(\roman*)]
         \item Injective Only: The first input has N choices, the next one has N choices as well and so on. Thus the total number of functions are: $N^N$
         \item Surjective Only: Since the size of domain and co-domain is same, all Surjective functions will be bijective by default. Therefore as explained below the total number of functions are: $N!$
