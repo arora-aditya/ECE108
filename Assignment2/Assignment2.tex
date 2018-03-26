@@ -1,0 +1,242 @@
+\documentclass[12pt]{article}
+
+\usepackage{answers}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{textcomp}
+\usepackage{mathrsfs}
+\usepackage{adjustbox}
+\usepackage{svg}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{totcount}
+\usepackage{xcolor}
+\usepackage{layout}
+\usepackage{latexsym}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{epsf}
+\input{epsf}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath,amsthm,amssymb,xspace,multirow,graphicx}
+\usepackage[titlenotnumbered,noend,noline]{algorithm2e}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}[2][Solution]{ \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Assignment 2}%replace with the appropriate homework number
+\author{Aditya Arora\\ %replace with your name
+Winter 2018\\$Absque\ sudore\ et\ labore\ nullum\ opus\ perfectum\ est$} %if necessary, replace with your course title
+\maketitle
+
+%Below is an example of the problem environment
+\begin{problem}{1}
+Convert the following natural-language text into an equivalent set of propositional premises, together with an associated propositional conclusion.  Your answers should identify the text that corresponds to each proposition variable you use and the proposition formul{\ae} that correspond to the premises and the conclusion.  Determine if the argument is valid.
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item If the Big Bang Theory is corrent then either there was a time before anything existed or the world will come to an end.  The world will not come to an end.  Therefore, if there was no time before anything existed, the Big Bang Theory is incorrect.
+\item To win a gold medal, an athlete must be very fit.  If s/he does not win a gold medal, then either s/he arrived late for the competition or his/her training was interrupted.  If s/he is not very fit, s/he will blame his/her coach.  If s/he blames his/her coach, or his/her training is interrupted, then s/he will will not get into the competition.  Therefore, if s/he gets into the competition, s/he will not have arrived late.
+\item If Hector wins the battle, he will plunder the city.  If he does not win the battle, he will either be killed or go into exile.  If he plunders the city, then Priam will lose his kingdom.  If Priam loses his kingdom or Hector goes into exile, then the war will end.  Therefore, if the war does not end, Hector will be killed.
+\item If the colonel was out of the room when the murder was committed then he couldn't have been right about the weapon used.  Either the butler is lying or he knows who the murderer was.  If Lady Barntree was not the murderer then either the colonel was in the room at the time or or the butler is lying.  Either the butler knows who the murderer was or the colonel was out of the room at the time of the murder.  Therefore, if the colonel was right about the weapon then Lady Barntree was the murderer.
+\end{enumerate}
+\end{problem}
+
+%Below is the solution environment
+\begin{solution}{1}
+\end{solution}
+
+\vskip 0.5in
+
+\begin{problem}{2}
+Which of the following are tautologies?  Which are contradictions?  Which are neither?  Justify your answer with truth tables, or sufficient models as is necessary.
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $(P \wedge Q) \rightarrow (P \rightarrow Q)$
+\item $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$
+\item $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$
+\item $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$
+\item $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$
+\item $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
+\item $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$
+\item $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$
+\item $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$
+\end{enumerate}
+\end{problem}
+\begin{solution}{2}
+\item[]
+\end{solution}
+
+\pagebreak
+
+
+\begin{problem}{3}
+For the propositional formul{\ae} in Question~2, use Semantic Tableaux to show whether each is a tautology, contradiction, or neither.
+\end{problem}
+\begin{solution}{3}
+\item[]
+\end{solution}
+
+\vskip 0.5in
+
+\begin{problem}{4} For the propositional formul{\ae} in Question~2, for any case where the formula was a tautology, prove that it is a tautology with a Kalish-Montegue derivations.
+\end{problem}
+\begin{solution}{4}
+\item[]
+\end{solution}
+
+\vskip 0.5in
+
+\begin{problem}{5}If a set of premises is inconsistent, then attempting to prove things with these premises is necessarily useless.  For example, given the (clearly inconsistent) premises:
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $P$
+\item $\lnot P$
+\end{enumerate}
+The proof for {\em any} statement $Q$ is then:\\
+\begin{tabular}{lll}
+1. & \sout{Show} $Q$ & \\
+2. & \multicolumn{2}{l}{\multirow{2}{*}{
+\begin{tabular}{|ll|}
+\hline
+ $P$ & Premise 1, ID \\
+ $\lnot P$ & Premise 2 \\
+\hline
+\end{tabular}
+}}\\
+3. & \multicolumn{2}{l}{}\\
+\end{tabular}\\
+One technique for determining if a set of premises is inconsistent is to determine if their conjunction is a contradiction ({\it i.e.}, if there are $N$ premises, identified as $P_i$ for $i = 1 \mbox{ to } N$, then the premises are inconsistent if $\forall_{T_r}^N E_P(P_1 \wedge P_2 \wedge \ldots \wedge P_N) \rightarrow F$).
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item Considering all possible models to show that a set of premises is inconsistent will take $O(2^N)$ time, where $N$ is the number of propositional variables.  Proving inconsistency instead might be preferable.  However, as noted above, proving things with a set of inconsistent premises is necessarily useless.  How (precisely) can you prove a set of premises, $P_i$ for $i = 1 \mbox{ to } N$, is inconsistent using (a) Semantic Tableaux (b) Kalish-Montegue derivations?
+\item It is possible that a set of premises is collectively a tautology ({\it i.e.}, if there are $N$ premises, identified as $P_i$ for $i = 1 \mbox{ to } N$, then $\vDash (P_1 \wedge P_2 \wedge \ldots \wedge P_N)$).  Does this cause a problem for proving things?  Are there any other implications of having a set of premises whose conjection is a tautology?
+\item Consider the following set of premises: ``Sales of houses fall off if interest rates rise. Auctioneers are not happy if sales of houses fall off. Interest rates are rising. Auctioneers are happy.''
+  \begin{enumerate}
+  \item Formalize these premises into a set of propositional formul{\ae}.
+  \item Demonstrate that they are inconsistent using truth tables
+  \item Prove that they are inconsistent using a Kalish-Montegue derivation
+  \end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}{5}
+\item[]
+
+\end{solution}
+
+
+\vskip 0.5in
+
+\begin{problem}{6}Convert the following propositions to Conjunctive Normal Form (CNF) with at most 3 literals per clause
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $(P \wedge Q) \rightarrow (P \rightarrow Q)$
+\item $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$
+\item $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$
+\item $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$
+\item $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$
+\item $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
+\item $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$
+\item $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$
+\item $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$
+\end{enumerate}
+\end{problem}
+\begin{solution}{6}
+\end{solution}
+
+
+\vskip 0.5in
+\begin{problem}{7}
+Define:
+\[
+\bigvee_{i = 1}^N P_i = P_1 \vee P_2 \ldots \vee P_N
+\]
+and
+\[
+\bigwedge_{i = 1}^N P_i = P_1 \wedge P_2 \ldots \wedge P_N
+\]
+
+Show that
+\[
+\bigvee_{i = 1}^N P_i \leftrightarrow \lnot \bigwedge_{i = 1}^N (\lnot P_i)
+\]
+and
+\[
+\bigwedge_{i = 1}^N P_i \leftrightarrow \lnot \bigvee_{i = 1}^N (\lnot P_i)
+\]
+are true for $N \in \mathbb{N}$
+
+Hint: in addition to basic Kalish-Montegue derivation, you will need to add induction.
+\item[]
+\begin{enumerate}[label=\alph*)]
+    \item Draw a graph of the “better than” relation for the set G.
+    \item Draw a graph of the “better than or equal to” relation for the set G.
+    \item Over the set G, for each of the relations (“better than” and “better than or equal to”), is there a least upper bound and a greatest lower bound, and if so what are they?
+    \item Over the set G \textminus  \{A, F\}, for each of the relations, what are the minimal and maximal elements?
+    \item Are the relations partial orders? Is there any missing information and/or information you are assuming that might affect that answer?
+\end{enumerate}
+\end{problem}
+\begin{solution}{7}
+\item[]
+\end{solution}
+\vskip 0.5in
+
+% \vskip 0.5in
+
+% \begin{problem}{12}
+% \item[]
+% \begin{enumerate}[label=\alph*)]
+% \end{enumerate}
+% \end{problem}
+% \begin{solution}{7}
+% \item[]
+% \begin{enumerate}[label=\alph*)]
+% \end{enumerate}
+% \end{solution}
+
+
+
+
+\end{document}
