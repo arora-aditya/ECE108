@@ -1,26 +1,13 @@
 \documentclass[12pt]{article}
 
-\usepackage{answers}
-\usepackage{setspace}
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{textcomp}
-\usepackage{mathrsfs}
-\usepackage{adjustbox}
-\usepackage{svg}
+\usepackage{answers,setspace,graphicx,multicol,enumitem,textcomp}
+\usepackage{mathrsfs,svg,adjustbox}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{totcount}
-\usepackage{xcolor}
-\usepackage{layout}
-\usepackage{latexsym}
-\usepackage{times}
-\usepackage{subfigure}
-\usepackage{epsf}
+\usepackage{totcount,xcolor,layout,latexsym,times,subfigure}
+\usepackage{epsf,prooftrees,natded}
 \input{epsf}
 \usepackage[normalem]{ulem}
-\usepackage{amsmath,amsthm,amssymb,xspace,multirow,graphicx}
+\usepackage{amsmath,amsthm,amssymb,xspace,multirow,graphicx,turnstile}
 \usepackage[titlenotnumbered,noend,noline]{algorithm2e}
 
 \newcommand{\N}{\mathbb{N}}
@@ -28,6 +15,10 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Jas}{Ja\'skowski }
+\newcommand{\JasA}{Ja\'skowski}
+\newcommand{\KM}{Kalish-Montague }
+\newcommand{\KMa}{Kalish-Montague}
 
 \DeclareMathOperator{\sech}{sech}
 \DeclareMathOperator{\csch}{csch}
@@ -69,7 +60,7 @@ Convert the following natural-language text into an equivalent set of propositio
   \parskip=0in
   \parsep=0in
   \itemsep=0in
-\item If the Big Bang Theory is corrent then either there was a time before anything existed or the world will come to an end.  The world will not come to an end.  Therefore, if there was no time before anything existed, the Big Bang Theory is incorrect.
+\item If the Big Bang Theory is correct then either there was a time before anything existed or the world will come to an end.  The world will not come to an end.  Therefore, if there was no time before anything existed, the Big Bang Theory is incorrect.
 \item To win a gold medal, an athlete must be very fit.  If s/he does not win a gold medal, then either s/he arrived late for the competition or his/her training was interrupted.  If s/he is not very fit, s/he will blame his/her coach.  If s/he blames his/her coach, or his/her training is interrupted, then s/he will will not get into the competition.  Therefore, if s/he gets into the competition, s/he will not have arrived late.
 \item If Hector wins the battle, he will plunder the city.  If he does not win the battle, he will either be killed or go into exile.  If he plunders the city, then Priam will lose his kingdom.  If Priam loses his kingdom or Hector goes into exile, then the war will end.  Therefore, if the war does not end, Hector will be killed.
 \item If the colonel was out of the room when the murder was committed then he couldn't have been right about the weapon used.  Either the butler is lying or he knows who the murderer was.  If Lady Barntree was not the murderer then either the colonel was in the room at the time or or the butler is lying.  Either the butler knows who the murderer was or the colonel was out of the room at the time of the murder.  Therefore, if the colonel was right about the weapon then Lady Barntree was the murderer.
@@ -78,10 +69,42 @@ Convert the following natural-language text into an equivalent set of propositio
 
 %Below is the solution environment
 \begin{solution}{1}
+\item[]
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $P$: Big Bang Theory is correct, $Q$: There was a time before anything existed, $R$: The world will come to an end
+\[
+\frac{P\rightarrow(Q \oplus R),\ \neg Q}{\neg P}
+\]
+The given argument is invalid because information about the proposition $P$ cannot be deduced from $P\rightarrow(Q \oplus R)$ and $\neg Q$
+\item $W$: Win a gold medal, $F$: Athlete is fit, $L$: Athlete arrived late for the competition, $I$: Training was interrupted, $B$: Athlete blames the coach, $C$: Athlete gets into the competition
+\[
+\frac{W \rightarrow F,\ \neg W \rightarrow (L \oplus I),\ (B \oplus I) \rightarrow \neg C, C}{\neg L}
+\]
+\item $H$: Hector wins the battle, $P$: City is plundered by Hector, $K$: Hector gets killed, $E$: Hector goes into the exile, $L$: Priam will lose his kingdom, $W$: War will end \\
+\[
+\frac{H \rightarrow P,\ \neg H \rightarrow (E \vee K),\ P \rightarrow L,\ (L \vee E) \rightarrow W, \neg W}{K}
+\]
+The given conclusion is true. This can be established by backtracking the statements.
+
+We know $\neg W$, this implies from the second last proposition that $\neg L$ and $\neg E$. $\neg L$ clearly implies $\neg P$ from the third last proposition. $\neg P$ implies $\neg H$ from the first equation. $\neg H$ now using the second proposition implies $(E \vee K)$ but we already know $\neg E$, this clearly concludes on $K$ being $True$
+\\
+\item $O$: Colonel was out of the room when the murder was committed, $R$: Colonel is correct about the weapon used in the murder, $B$: Butler is lying, $K$: Butler knows who the murderer, $L$: Lady Barntree was the murderer
+\[
+\frac{O \rightarrow \neg R,\ B \oplus K,\ \neg L \rightarrow (B \oplus \neg O),\ K \oplus O,\ R}{\neg L}
+\]
+The given conclusion is false. This can be established by backtracking the statements.
+
+We know $R$, this implies that $\neg O$ from the first proposition. Using $\neg O$ in the second last proposition we can say that $K$ is true. Using $K$ in the second proposition we can say that $B$ is false. Using all this we can say that $(B \oplus \neg O)$ is $True$. But since $\neg L \rightarrow (B \oplus \neg O)$ and $(B \oplus \neg O)$ are both true we can not necessarily say that $\neg L$ is $True$
+\end{enumerate}
 \end{solution}
 
-\vskip 0.5in
 
+
+\vskip 0.5in
+\newpage
 \begin{problem}{2}
 Which of the following are tautologies?  Which are contradictions?  Which are neither?  Justify your answer with truth tables, or sufficient models as is necessary.
 \begin{enumerate}
@@ -101,20 +124,181 @@ Which of the following are tautologies?  Which are contradictions?  Which are ne
 \end{problem}
 \begin{solution}{2}
 \item[]
-\end{solution}
+\begin{table}[!h]
+\centering
+\caption{Part 1. Clearly a Tautology}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+P & Q & $P \rightarrow Q$ & $P \wedge Q$ & $(P \wedge Q) \rightarrow (P \rightarrow Q)$ \\ \hline
+F & F & T               & F          & T                                          \\ \hline
+F & T & T               & F          & T                                          \\ \hline
+T & F & F               & F          & T                                          \\ \hline
+T & T & T               & T          & T                                          \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 2. Clearly satisfiable}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+P & Q & $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$ \\ \hline
+F & F & F \\ \hline
+F & T & F \\ \hline
+T & F & T \\ \hline
+T & T & T \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 3. Clearly satisfiable}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+P & Q & $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$ \\ \hline
+F & F & T \\ \hline
+F & T & T \\ \hline
+T & F & T \\ \hline
+T & T & F \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 4. Clearly satisfiable}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+P & Q & $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$ \\ \hline
+F & F & T \\ \hline
+F & T & T \\ \hline
+T & F & F \\ \hline
+T & T & T \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 5. Clearly a Tautology}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+P & Q & $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$ \\ \hline
+F & F & T \\ \hline
+F & T & T \\ \hline
+T & F & T \\ \hline
+T & T & T \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 6. Clearly a Tautology}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+P & Q & R & $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$ \\ \hline
+T & T & T & T \\ \hline
+T & T & F & T \\ \hline
+T & F & T & T \\ \hline
+T & F & F & T \\ \hline
+F & T & T & T \\ \hline
+F & T & F & T \\ \hline
+F & F & T & T \\ \hline
+F & F & F & T \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Part 7. Clearly a Tautology}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+P & Q & R & $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$ \\ \hline
+T & T & T & T \\ \hline
+T & T & F & T \\ \hline
+T & F & T & T \\ \hline
+T & F & F & T \\ \hline
+F & T & T & T \\ \hline
+F & T & F & T \\ \hline
+F & F & T & T \\ \hline
+F & F & F & T \\ \hline
+\end{tabular}
+\end{table}
 
 \pagebreak
 
+\begin{table}[!h]
+\centering
+\caption{Part 8. Clearly satisfiable}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+P & Q & R & S & $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$ \\ \hline
+T & T & T & T & T \\ \hline
+T & T & T & F & T \\ \hline
+T & T & F & T & T \\ \hline
+T & T & F & F & T \\ \hline
+T & F & T & T & T \\ \hline
+T & F & T & F & F \\ \hline
+T & F & F & T & T \\ \hline
+T & F & F & F & F \\ \hline
+F & T & T & T & T \\ \hline
+F & T & T & F & F \\ \hline
+F & T & F & T & T \\ \hline
+F & T & F & F & T \\ \hline
+F & F & T & T & T \\ \hline
+F & F & T & F & F \\ \hline
+F & F & F & T & T \\ \hline
+F & F & F & F & T \\ \hline
+\end{tabular}
+\end{table}
 
+\begin{table}[!h]
+\centering
+\caption{Part 9. Clearly a Tautology}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+P & Q & R & S & $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$ \\ \hline
+T & T & T & T & T \\ \hline
+T & T & T & F & T \\ \hline
+T & T & F & T & T \\ \hline
+T & T & F & F & T \\ \hline
+T & F & T & T & T \\ \hline
+T & F & T & F & T \\ \hline
+T & F & F & T & T \\ \hline
+T & F & F & F & T \\ \hline
+F & T & T & T & T \\ \hline
+F & T & T & F & T \\ \hline
+F & T & F & T & T \\ \hline
+F & T & F & F & T \\ \hline
+F & F & T & T & T \\ \hline
+F & F & T & F & T \\ \hline
+F & F & F & T & T \\ \hline
+F & F & F & F & T \\ \hline
+\end{tabular}
+\end{table}
+
+\end{solution}
+
+
+\pagebreak
+\pagebreak
 \begin{problem}{3}
 For the propositional formul{\ae} in Question~2, use Semantic Tableaux to show whether each is a tautology, contradiction, or neither.
 \end{problem}
 \begin{solution}{3}
 \item[]
 \end{solution}
-
 \vskip 0.5in
-
+\newpage
+\pagebreak
+\pagebreak\newpage
 \begin{problem}{4} For the propositional formul{\ae} in Question~2, for any case where the formula was a tautology, prove that it is a tautology with a Kalish-Montegue derivations.
 \end{problem}
 \begin{solution}{4}
@@ -122,8 +306,8 @@ For the propositional formul{\ae} in Question~2, use Semantic Tableaux to show w
 \end{solution}
 
 \vskip 0.5in
-
-\begin{problem}{5}If a set of premises is inconsistent, then attempting to prove things with these premises is necessarily useless.  For example, given the (clearly inconsistent) premises:
+\pagebreak
+\begin{problem}{5}If a set of premises is inconsistent, then attempting to prove things with these \\premises is necessarily useless. For example, given the (clearly inconsistent) premises:
 \begin{enumerate}
   \parskip=0in
   \parsep=0in
@@ -161,12 +345,39 @@ One technique for determining if a set of premises is inconsistent is to determi
 \end{problem}
 \begin{solution}{5}
 \item[]
+\begin{enumerate}
+  \itemsep=0in
+\item $S$: Sales of houses fall off, $I$: Interest rates rise, $A$: Auctioneers are happy \\
+Propositional formul\ae: $I \rightarrow S,\ S \rightarrow \lnot A,\ I,\ A$ \\ (They are in the same order as the given statements)
+\item According to the problem, the premises are inconsistent if $\forall_{T_r}^N E_P(P_1 \wedge P_2 \wedge \ldots \wedge P_N) \rightarrow F$) for $N$ premises identified as $P_i$ for $i = 1 \mbox{ to } N$ \\ Therefore using the same property in our premises:\\
+Conjunction of Premises $= (I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A$ \\
 
+\begin{table}[!h]
+\centering
+\caption{The conjunction is clearly always false}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+I & S & A & $(I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A$ \\ \hline
+T & T & T & F \\ \hline
+T & T & F & F \\ \hline
+T & F & T & F \\ \hline
+T & F & F & F \\ \hline
+F & T & T & F \\ \hline
+F & T & F & F \\ \hline
+F & F & T & F \\ \hline
+F & F & F & F \\ \hline
+\end{tabular}
+\end{table}
+
+\item \pagebreak
+
+\end{enumerate}
 \end{solution}
 
 
 \vskip 0.5in
-
+\pagebreak
 \begin{problem}{6}Convert the following propositions to Conjunctive Normal Form (CNF) with at most 3 literals per clause
 \begin{enumerate}
   \parskip=0in
@@ -184,6 +395,23 @@ One technique for determining if a set of premises is inconsistent is to determi
 \end{enumerate}
 \end{problem}
 \begin{solution}{6}
+\item[]
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item True
+\item $P$
+\item $\lnot P \vee \lnot Q$
+\item $\lnot P \vee Q$
+\item True
+\item True
+\item True
+\item $(\lnot P \vee Q \vee S) \wedge (P \vee \lnot R \vee S)$
+% Using the truth table to derive the product of sums format: \\
+% $(P \vee \lnot Q \vee R \vee \lnot S) \wedge (P \vee Q \vee R \vee S) \wedge (P \vee Q \vee R \vee S) \wedge (\lnot P \vee \lnot Q \vee R \vee \lnot S)$
+\item True
+\end{enumerate}
 \end{solution}
 
 
@@ -209,17 +437,33 @@ and
 are true for $N \in \mathbb{N}$
 
 Hint: in addition to basic Kalish-Montegue derivation, you will need to add induction.
-\item[]
-\begin{enumerate}[label=\alph*)]
-    \item Draw a graph of the “better than” relation for the set G.
-    \item Draw a graph of the “better than or equal to” relation for the set G.
-    \item Over the set G, for each of the relations (“better than” and “better than or equal to”), is there a least upper bound and a greatest lower bound, and if so what are they?
-    \item Over the set G \textminus  \{A, F\}, for each of the relations, what are the minimal and maximal elements?
-    \item Are the relations partial orders? Is there any missing information and/or information you are assuming that might affect that answer?
-\end{enumerate}
 \end{problem}
 \begin{solution}{7}
 \item[]
+% $\KMproof{
+%   \cbblk{
+%   	\proofline{(((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))\rightarrow(P\rightarrow R))}{2--13 Conditionalization}
+%   }{
+%     \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{Supposition}
+%     \cbblk{
+%       \proofline{(P\rightarrow R)}{4--13 Conditionalization}
+%     }{
+%       \proofline{P}{Supposition}
+%       \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{2 Repeat}
+%       \proofline{(P\rightarrow Q)}{5 Simplification}
+%       \proofline{Q}{4, 6 Modus Ponens}
+%       \proofline{(\neg R\rightarrow\neg Q)}{5 Simplification}
+%       \cbblk{
+%         \proofline{R}{10--13 Reductio ad Absurdum}
+%       }{
+%         \proofline{\neg R}{Supposition}
+%         \proofline{(\neg R\rightarrow\neg Q)}{8 Repeat}
+%         \proofline{\neg Q}{10, 11 Modus Ponens}
+%         \proofline{Q}{7 Repeat}
+%       }
+%     }
+%   }
+% }$
 \end{solution}
 \vskip 0.5in
 
