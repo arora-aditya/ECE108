@@ -1,13 +1,15 @@
-\documentclass[12pt]{article}
+\documentclass[10.5pt]{article}
 
 \usepackage{answers,setspace,graphicx,multicol,enumitem,textcomp}
 \usepackage{mathrsfs,svg,adjustbox}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{geometry}
 \usepackage{totcount,xcolor,layout,latexsym,times,subfigure}
 \usepackage{epsf,prooftrees,natded}
 \input{epsf}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath,amsthm,amssymb,xspace,multirow,graphicx,turnstile}
+\usepackage[nocenter]{qtree}
 \usepackage[titlenotnumbered,noend,noline]{algorithm2e}
 
 \newcommand{\N}{\mathbb{N}}
@@ -66,8 +68,6 @@ Convert the following natural-language text into an equivalent set of propositio
 \item If the colonel was out of the room when the murder was committed then he couldn't have been right about the weapon used.  Either the butler is lying or he knows who the murderer was.  If Lady Barntree was not the murderer then either the colonel was in the room at the time or or the butler is lying.  Either the butler knows who the murderer was or the colonel was out of the room at the time of the murder.  Therefore, if the colonel was right about the weapon then Lady Barntree was the murderer.
 \end{enumerate}
 \end{problem}
-
-%Below is the solution environment
 \begin{solution}{1}
 \item[]
 \begin{enumerate}
@@ -76,20 +76,21 @@ Convert the following natural-language text into an equivalent set of propositio
   \itemsep=0in
 \item $P$: Big Bang Theory is correct, $Q$: There was a time before anything existed, $R$: The world will come to an end
 \[
-\frac{P\rightarrow(Q \oplus R),\ \neg Q}{\neg P}
+\frac{P\rightarrow(Q \oplus R),\ \neg Q,\ \neg R}{\neg P}
 \]
-The given argument is invalid because information about the proposition $P$ cannot be deduced from $P\rightarrow(Q \oplus R)$ and $\neg Q$
+We know $\neg Q,\ \neg R$, and thus $(Q \oplus R)$ is $False$ from the first proposition. This clearly implies $\neg P$
+
 \item $W$: Win a gold medal, $F$: Athlete is fit, $L$: Athlete arrived late for the competition, $I$: Training was interrupted, $B$: Athlete blames the coach, $C$: Athlete gets into the competition
 \[
 \frac{W \rightarrow F,\ \neg W \rightarrow (L \oplus I),\ (B \oplus I) \rightarrow \neg C, C}{\neg L}
 \]
-\item $H$: Hector wins the battle, $P$: City is plundered by Hector, $K$: Hector gets killed, $E$: Hector goes into the exile, $L$: Priam will lose his kingdom, $W$: War will end \\
+\item $H$: Hector wins the battle, $P$: City is plundered by Hector, $K$: Hector gets killed, $E$: Hector goes into the exile, $L$: Priam will lose his kingdom, $W$: War will end  \\
 \[
-\frac{H \rightarrow P,\ \neg H \rightarrow (E \vee K),\ P \rightarrow L,\ (L \vee E) \rightarrow W, \neg W}{K}
+\frac{H \rightarrow P,\ \neg H \rightarrow (E \oplus K),\ P \rightarrow L,\ (L \oplus E) \rightarrow W, \neg W}{K}
 \]
 The given conclusion is true. This can be established by backtracking the statements.
 
-We know $\neg W$, this implies from the second last proposition that $\neg L$ and $\neg E$. $\neg L$ clearly implies $\neg P$ from the third last proposition. $\neg P$ implies $\neg H$ from the first equation. $\neg H$ now using the second proposition implies $(E \vee K)$ but we already know $\neg E$, this clearly concludes on $K$ being $True$
+We know $\neg W$, this implies from the second last proposition that $\neg L$ and $\neg E$. $\neg L$ clearly implies $\neg P$ from the third last proposition. $\neg P$ implies $\neg H$ from the first equation. $\neg H$ now using the second proposition implies $(E \oplus K)$ but we already know $\neg E$, this clearly concludes on $K$ being $True$
 \\
 \item $O$: Colonel was out of the room when the murder was committed, $R$: Colonel is correct about the weapon used in the murder, $B$: Butler is lying, $K$: Butler knows who the murderer, $L$: Lady Barntree was the murderer
 \[
@@ -100,8 +101,6 @@ The given conclusion is false. This can be established by backtracking the state
 We know $R$, this implies that $\neg O$ from the first proposition. Using $\neg O$ in the second last proposition we can say that $K$ is true. Using $K$ in the second proposition we can say that $B$ is false. Using all this we can say that $(B \oplus \neg O)$ is $True$. But since $\neg L \rightarrow (B \oplus \neg O)$ and $(B \oplus \neg O)$ are both true we can not necessarily say that $\neg L$ is $True$
 \end{enumerate}
 \end{solution}
-
-
 
 \vskip 0.5in
 \newpage
@@ -262,25 +261,41 @@ F & F & F & F & T \\ \hline
 \centering
 \caption{Part 9. Clearly a Tautology}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-P & Q & R & S & $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$ \\ \hline
-T & T & T & T & T \\ \hline
-T & T & T & F & T \\ \hline
-T & T & F & T & T \\ \hline
-T & T & F & F & T \\ \hline
-T & F & T & T & T \\ \hline
-T & F & T & F & T \\ \hline
-T & F & F & T & T \\ \hline
-T & F & F & F & T \\ \hline
-F & T & T & T & T \\ \hline
-F & T & T & F & T \\ \hline
-F & T & F & T & T \\ \hline
-F & T & F & F & T \\ \hline
-F & F & T & T & T \\ \hline
-F & F & T & F & T \\ \hline
-F & F & F & T & T \\ \hline
-F & F & F & F & T \\ \hline
+P & Q & R & S & T & $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$ \\ \hline
+T & T & T & T & T & T                                                                    \\ \hline
+T & T & T & T & F & T                                                                    \\ \hline
+T & T & T & F & T & T                                                                    \\ \hline
+T & T & T & F & F & T                                                                    \\ \hline
+T & T & F & T & T & T                                                                    \\ \hline
+T & T & F & T & F & T                                                                    \\ \hline
+T & T & F & F & T & T                                                                    \\ \hline
+T & T & F & F & F & T                                                                    \\ \hline
+T & F & T & T & T & T                                                                    \\ \hline
+T & F & T & T & F & T                                                                    \\ \hline
+T & F & T & F & T & T                                                                    \\ \hline
+T & F & T & F & F & T                                                                    \\ \hline
+T & F & F & T & T & T                                                                    \\ \hline
+T & F & F & T & F & T                                                                    \\ \hline
+T & F & F & F & T & T                                                                    \\ \hline
+T & F & F & F & F & T                                                                    \\ \hline
+F & T & T & T & T & T                                                                    \\ \hline
+F & T & T & T & F & T                                                                    \\ \hline
+F & T & T & F & T & T                                                                    \\ \hline
+F & T & T & F & F & T                                                                    \\ \hline
+F & T & F & T & T & T                                                                    \\ \hline
+F & T & F & T & F & T                                                                    \\ \hline
+F & T & F & F & T & T                                                                    \\ \hline
+F & T & F & F & F & T                                                                    \\ \hline
+F & F & T & T & T & T                                                                    \\ \hline
+F & F & T & T & F & T                                                                    \\ \hline
+F & F & T & F & T & T                                                                    \\ \hline
+F & F & T & F & F & T                                                                    \\ \hline
+F & F & F & T & T & T                                                                    \\ \hline
+F & F & F & T & F & T                                                                    \\ \hline
+F & F & F & F & T & T                                                                    \\ \hline
+F & F & F & F & F & T                                                                    \\ \hline
 \end{tabular}
 \end{table}
 
@@ -289,16 +304,210 @@ F & F & F & F & T \\ \hline
 
 \pagebreak
 \pagebreak
+\newpage
+\clearpage
 \begin{problem}{3}
 For the propositional formul{\ae} in Question~2, use Semantic Tableaux to show whether each is a tautology, contradiction, or neither.
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $(P \wedge Q) \rightarrow (P \rightarrow Q)$
+\item $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$
+\item $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$
+\item $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$
+\item $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$
+\item $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
+\item $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$
+\item $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$
+\item $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$
+\end{enumerate}
 \end{problem}
 \begin{solution}{3}
 \item[]
+\begin{enumerate}
+\item {
+\Tree
+[.{$((P\land Q)\to(P\to Q)): F$}
+    [.{$(P\land Q), \neg(P\to Q) $}
+        [.{$P: T, Q: T $}
+            [.{$P: T, \neg Q: T $\\x} ]
+        ]
+    ]
+]\\
+Therefore this statement is a Tautology
+}
+\item {
+\Tree
+[.{$(P \wedge Q) \leftrightarrow (P \rightarrow Q) : F$}
+    [.{$(P \wedge Q): T, (P \rightarrow Q): F $}
+        [.{$P:T, Q:T $}
+            [.{$P:T, Q: F $\\x} ]
+        ]
+    ]
+    [.{$(P \wedge Q): T, (P \rightarrow Q): F$}
+        [.{$P:F$}
+            [.{$Q:F$\\O} ]
+        ]
+        [.{$Q:T$}
+            [.{$P:F, Q:F$\\x} ]
+        ]
+    ]
+]\\
+Therefore this statement is satisfiable
+}
+\item {
+\Tree
+[.{$(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q): F $}
+    [.{$(\lnot P \vee Q): T, (P \rightarrow \lnot Q): F$}
+        [.{$P:F$} [.{$P:T$\\x} ] [.{$Q:T$\\O} ] ] [.{$Q:T$} [.{$P:T$\\x} ] [.{$Q:T$\\O} ] ]
+    ]
+]\\
+Therefore this statement is satisfiable
+}
+\item {
+\Tree
+[.{$(((P \rightarrow Q) \rightarrow P) \rightarrow Q): F$}
+    [.{$(P \rightarrow Q) \rightarrow P): T $}
+        [.{$(P \rightarrow Q): F $}
+            [.{$P:T$\\O} ]
+            [.{$Q:F$\\O} ]
+        ]
+        [.{$P: T$\\O} ]
+    ]
+    [.{$Q: F$} ]
+]
+}
+{
+\Tree
+[.{$(((P \rightarrow Q) \rightarrow P) \rightarrow Q): T$}
+    [.{$(P \rightarrow Q) \rightarrow P): F $}
+        [.{$(P \rightarrow Q): T $}
+            [.{$P:F$\\O} ]
+            [.{$Q:T$\\O} ]
+        ]
+        [.{$P: F$\\O} ]
+    ]
+    [.{$Q: T$} ]
+]\\
+Since the proposition can be both True and False it is Satisfiable
+}
+\item {
+\Tree [.{$(P \rightarrow (Q \rightarrow (P \rightarrow Q))):F$} [.{$P:T,\ (Q \rightarrow (P \rightarrow Q)):F$} [.{$Q:T,\ (P \rightarrow Q):F$} [.{$P:T,\ Q:F$\\x} ] ] ] ]\\
+Therefore this statement is a Tautology
+}
+\item {
+\Tree
+[.{$((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$}
+    [.{$((P \wedge \lnot Q) \rightarrow \lnot R):F,\  ((P \wedge R) \rightarrow Q):T$}      [.{$(P \wedge \lnot Q):T,\ \lnot R:F $}
+            [.{$P:T,\ Q:F,\ R:T$}
+                [.{$(P \wedge R):F$}
+                    [.{$P:F$\\x} ]
+                    [.{$Q:F$\\x} ]
+                ]
+            [.{$Q:T$\\x} ] ]
+        ]
+    ]
+    [.{$((P \wedge \lnot Q) \rightarrow \lnot R):T,\  ((P \wedge R) \rightarrow Q):F$}
+        [.{$P \wedge R: T,\ Q:F$}
+            [.{$P:T,R:T$}
+                [.{$\lnot R: T$}
+                    [.{$R: F$\\x} ]
+                ]
+                [.{$(P \wedge \lnot Q):F$}
+                    [.{$P:F$} ]
+                    [.{$\lnot Q:F $\\} {$Q:T$\\x} ]
+                ]
+            ]
+        ]
+    ]
+ ]\\
+Therefore this statement is a Tautology
+}
+\item {
+\Tree
+[.{$(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S))):F$}
+    [.{$(((P \vee Q) \vee R) \vee S):T,\ (P \vee (Q \vee (R \vee S))): F$}
+        [.{$\lnot P:T,\ \neg (Q \lor (R\lor S)):T
+        $}
+            [.{$\lnot Q:T,\ \lnot (R \lor S):T $}
+                [ .{$\neg R: T, \neg S: T$}
+                    [.{$((P\lor Q)\lor R)$}
+                        [.{$(P\lor Q)$} {$P$\\x} {$Q$\\x} ]
+                        [.{$R$\\x} ]
+                    ]
+                    [.{$S$\\x} ]
+                ]
+            ]
+        ]
+    ]
+    [.{$\neg(((P\lor Q)\lor R)\lor S):T, (P\lor(Q\lor(R\lor S))): T $}
+        [.{$((P\lor Q)\lor R): F, \neg S: T $}
+            [.{$\neg(P\lor Q): T, \neg R: F  $}
+                [.{$\neg P: T, \neg Q: T $}
+                    [.{$P: T$\\x} ]
+                    [.{$(Q\lor(R\lor S)):T$}
+                        [.{$Q:T$\\x} ]
+                        [.{$R \lor S : T $}
+                            [.{$R:T$\\x} ]
+                            [.{$S:T$\\x} ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]\\
+Therefore this statement is a Tautology
+}
+\item {
+\Tree
+[.{$(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S))): F $}
+    [.{$(((P \rightarrow Q) \rightarrow R) \rightarrow S): T, P \rightarrow (Q \rightarrow (R \rightarrow S))): F $}
+        [.{$P:T, (Q \rightarrow (R \rightarrow S)): F $}
+            [.{$Q:T, (R \rightarrow S): F$}
+                [.{$R:T, S:F $}
+                    [.{$S:T$\\x} ]
+                    [.{$((P \rightarrow Q) \rightarrow R):F $}
+                        [.{$(P \rightarrow Q), R:F$\\x} ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+    [.{$(((P \rightarrow Q) \rightarrow R) \rightarrow S): F, P \rightarrow (Q \rightarrow (R \rightarrow S))): T$}
+        [.{$S:F,((P \rightarrow Q) \rightarrow R):T  $}
+            [.{$(P \rightarrow Q):T$}
+                [.{$P:F$\\O} ]
+            ]
+        ]
+    ]
+]\\Thus the statement is Satisfiable
+}
+\item {
+\Tree
+[.{$((P\to(\neg R\to \neg S))\lor((S\to(P\lor \neg T))\lor(\neg Q\to R))): False$}
+    [.{$\neg(P\to(\neg R\to \neg S)): True, \neg((S\to(P\lor \neg T))\lor(\neg Q\to R)): True $}
+        [.{$P: True, \neg(\neg R\to\neg S): True  $}
+            [.{$\neg(S\to(P\lor\neg T)): True, \neg(\neg Q\to R): True  $}
+                [.{$S, \neg(P\lor\neg T): True $}
+                    [.{$\neg P: True, \neg\neg T: True$\\x} ]
+                ]
+            ]
+        ]
+    ]
+]\\
+\\
+Therefore this statement is a Tautology
+}
+\end{enumerate}
 \end{solution}
+
 \vskip 0.5in
 \newpage
 \pagebreak
 \pagebreak\newpage
+
 \begin{problem}{4} For the propositional formul{\ae} in Question~2, for any case where the formula was a tautology, prove that it is a tautology with a Kalish-Montegue derivations.
 \end{problem}
 \begin{solution}{4}
@@ -345,7 +554,7 @@ One technique for determining if a set of premises is inconsistent is to determi
 \end{problem}
 \begin{solution}{5}
 \item[]
-\begin{enumerate}
+\begin{enumerate}[label=(\alph*)]
   \itemsep=0in
 \item $S$: Sales of houses fall off, $I$: Interest rates rise, $A$: Auctioneers are happy \\
 Propositional formul\ae: $I \rightarrow S,\ S \rightarrow \lnot A,\ I,\ A$ \\ (They are in the same order as the given statements)
