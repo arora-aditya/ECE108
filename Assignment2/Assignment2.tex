@@ -2,7 +2,7 @@
 
 \usepackage{answers,setspace,graphicx,multicol,enumitem,textcomp}
 \usepackage{mathrsfs,svg,adjustbox}
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{geometry}
 \usepackage{totcount,xcolor,layout,latexsym,times,subfigure}
 \usepackage{epsf,prooftrees,natded}
@@ -509,9 +509,155 @@ Therefore this statement is a Tautology
 \pagebreak\newpage
 
 \begin{problem}{4} For the propositional formul{\ae} in Question~2, for any case where the formula was a tautology, prove that it is a tautology with a Kalish-Montegue derivations.
+\begin{enumerate}
+  \parskip=0in
+  \parsep=0in
+  \itemsep=0in
+\item $(P \wedge Q) \rightarrow (P \rightarrow Q)$
+\item $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$
+\item $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$
+\item $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$
+\item $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$
+\item $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
+\item $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$
+\item $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$
+\item $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$
+\end{enumerate}
 \end{problem}
 \begin{solution}{4}
 \item[]
+
+
+{1.} $\KMproof{
+  \cbblk{
+  	\proofline{(P \wedge Q) \rightarrow (P \rightarrow Q)}{2--7 Conditionalization}
+  }{
+    \proofline{(P \wedge Q)}{1 Ass CD}
+    \cbblk{
+      \proofline{(P\rightarrow Q)}{4--5 Conditionalization}
+    }{
+        \proofline{P}{2 SIMP}
+        \proofline{Q}{2 SIMP}
+    }
+  }
+}$
+
+{5.}$\KMproof{
+  \cbblk{
+  	\proofline{(P \rightarrow (Q \rightarrow (P \rightarrow Q)))}{2--8 Conditionalization}
+  }{
+    \proofline{P}{1 Ass CD}
+    \proofline{Q}{1 Ass CD}
+    \cbblk{
+      \proofline{(Q \rightarrow (P \rightarrow Q))}{6--7 Conditionalization}
+    }{
+        \proofline{Q}{3 Repeat}
+        \cbblk{
+            \proofline{(P\rightarrow Q)}{6--7 Conditionalization}
+        }{
+        \proofline{P}{2 Repeat}
+        \proofline{Q}{3 Repeat}
+        }
+    }
+  }
+}$
+\\Citing De-Morgan's Law proff from question 5\\
+{6.}$\KMproof{
+  \cbblk{
+  	\proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)}{2--20 Conditionalization}
+  }{
+    \cbblk{
+      \proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \rightarrow ((P \wedge R) \rightarrow Q)}{1 Subderivation}
+    }{
+        \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{2 Ass CD}
+        \cbblk{
+            \proofline{((P \wedge R) \rightarrow Q)}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge R}{4 Conditional Derivation}
+            \proofline{P}{5 Simplification}
+            \proofline{R}{5 Simplification}
+            \proofline{\neg \neg R}{7 Double Negation}
+            \proofline{\neg (P \wedge \lnot Q)}{3,7 Modus Tollens}
+            \proofline{\neg P \vee Q}{9 de-Morgan's law}
+            \proofline{Q}{6,10 Modus Tollendo Ponens}
+        }
+    }
+    \cbblk{
+      \proofline{((P \wedge R) \rightarrow Q)\rightarrow ((P \wedge \lnot Q) \rightarrow \lnot R) }{1 Subderivation}
+    }{
+        \proofline{((P \wedge R) \rightarrow Q)}{12 Ass CD}
+        \cbblk{
+            \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge \lnot Q}{12 Conditional Derivation}
+            \proofline{P}{5 Simplification}
+            \proofline{\lnot Q}{5 Simplification}
+            \proofline{\lnot(P \wedge R)}{13,5 Modus Tollens}
+            \proofline{\lnot P \vee \lnot R}{18 de-Morgan's law}
+            \proofline{\lnot R}{16,19 Modus Tollendo Ponens}
+        }
+    }
+     \proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)}{2,12 Conditional to Biconditional, DD}
+  }
+}$
+
+
+% {6.} $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
+
+{7.} $\KMproof{
+  \cbblk{
+  	\proofline{(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))}{2--20 Conditionalization}
+  }{
+    \cbblk{
+      \proofline{(((P \vee Q) \vee R) \vee S) \rightarrow (P \vee (Q \vee (R \vee S)))}{1 Subderivation}
+    }{
+        \proofline{(((P \vee Q) \vee R) \vee S)}{2 Ass CD}
+        \cbblk{
+            \proofline{(P \vee (Q \vee (R \vee S)))}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge R}{4 Conditional Derivation}
+        }
+    }
+    \cbblk{
+      \proofline{(P \vee (Q \vee (R \vee S))) \rightarrow  (((P \vee Q) \vee R) \vee S)}{1 Subderivation}
+    }{
+        \proofline{((P \wedge R) \rightarrow Q)}{12 Ass CD}
+        \cbblk{
+            \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge \lnot Q}{12 Conditional Derivation}
+        }
+    }
+  }
+}$
+
+
+{9.} $\KMproof{
+  \cbblk{
+  	\proofline{(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))}{2--20 Conditionalization}
+  }{
+    \cbblk{
+      \proofline{(((P \vee Q) \vee R) \vee S) \rightarrow (P \vee (Q \vee (R \vee S)))}{1 Subderivation}
+    }{
+        \proofline{(((P \vee Q) \vee R) \vee S)}{2 Ass CD}
+        \cbblk{
+            \proofline{(P \vee (Q \vee (R \vee S)))}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge R}{4 Conditional Derivation}
+        }
+    }
+    \cbblk{
+      \proofline{(P \vee (Q \vee (R \vee S))) \rightarrow  (((P \vee Q) \vee R) \vee S)}{1 Subderivation}
+    }{
+        \proofline{((P \wedge R) \rightarrow Q)}{12 Ass CD}
+        \cbblk{
+            \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{7--8 Sub-Derivation}
+        }{
+            \proofline{P \wedge \lnot Q}{12 Conditional Derivation}
+        }
+    }
+  }
+}$
 \end{solution}
 
 \vskip 0.5in
@@ -579,7 +725,19 @@ F & F & F & F \\ \hline
 \end{tabular}
 \end{table}
 
-\item \pagebreak
+\item $\KMproof{
+  \cbblk{
+  	\proofline{\lnot((I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A)}{2--8 Conditionalization}
+  }{
+    \proofline{I}{3rd Premise}
+    \proofline{(I \rightarrow S)}{1st Premise}
+    \proofline{(S \rightarrow \lnot A)}{2nd Premise}
+    \proofline{A}{4th Premise}
+    \proofline{\lnot (\lnot A)}{5 Double Negation}
+    \proofline{\lnot S}{3,6 Modus Tollens}
+    \proofline{\lnot I}{2,7 Modus Tollens}
+  }
+}$
 
 \end{enumerate}
 \end{solution}
@@ -649,30 +807,30 @@ Hint: in addition to basic Kalish-Montegue derivation, you will need to add indu
 \end{problem}
 \begin{solution}{7}
 \item[]
-% $\KMproof{
-%   \cbblk{
-%   	\proofline{(((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))\rightarrow(P\rightarrow R))}{2--13 Conditionalization}
-%   }{
-%     \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{Supposition}
-%     \cbblk{
-%       \proofline{(P\rightarrow R)}{4--13 Conditionalization}
-%     }{
-%       \proofline{P}{Supposition}
-%       \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{2 Repeat}
-%       \proofline{(P\rightarrow Q)}{5 Simplification}
-%       \proofline{Q}{4, 6 Modus Ponens}
-%       \proofline{(\neg R\rightarrow\neg Q)}{5 Simplification}
-%       \cbblk{
-%         \proofline{R}{10--13 Reductio ad Absurdum}
-%       }{
-%         \proofline{\neg R}{Supposition}
-%         \proofline{(\neg R\rightarrow\neg Q)}{8 Repeat}
-%         \proofline{\neg Q}{10, 11 Modus Ponens}
-%         \proofline{Q}{7 Repeat}
-%       }
-%     }
-%   }
-% }$
+$\KMproof{
+  \cbblk{
+  	\proofline{(((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))\rightarrow(P\rightarrow R))}{2--13 Conditionalization}
+  }{
+    \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{Supposition}
+    \cbblk{
+      \proofline{(P\rightarrow R)}{4--13 Conditionalization}
+    }{
+      \proofline{P}{Supposition}
+      \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{2 Repeat}
+      \proofline{(P\rightarrow Q)}{5 Simplification}
+      \proofline{Q}{4, 6 Modus Ponens}
+      \proofline{(\neg R\rightarrow\neg Q)}{5 Simplification}
+      \cbblk{
+        \proofline{R}{10--13 Reductio ad Absurdum}
+      }{
+        \proofline{\neg R}{Supposition}
+        \proofline{(\neg R\rightarrow\neg Q)}{8 Repeat}
+        \proofline{\neg Q}{10, 11 Modus Ponens}
+        \proofline{Q}{7 Repeat}
+      }
+    }
+  }
+}$
 \end{solution}
 \vskip 0.5in
 
