@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+
+\usepackage{answers,setspace,graphicx,multicol,enumitem,textcomp}
+\usepackage{mathrsfs,svg,adjustbox}
+\usepackage[margin=1in]{geometry}
+\usepackage{totcount,xcolor,layout,latexsym,times,subfigure}
+\usepackage{epsf,prooftrees,natded}
+\input{epsf}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath,amsthm,amssymb,xspace,multirow,graphicx,turnstile}
+\usepackage[titlenotnumbered,noend,noline]{algorithm2e}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Jas}{Ja\'skowski }
+\newcommand{\JasA}{Ja\'skowski}
+\newcommand{\KM}{Kalish-Montague }
+\newcommand{\KMa}{Kalish-Montague}
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{solution}[2][Solution]{ \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Assignment 3}%replace with the appropriate homework number
+\author{Aditya Arora\\ %replace with your name
+Winter 2018\\$Quidquid\ Latine\ dictum\ sit,\ altum\ viditur$} %if necessary, replace with your course title
+\maketitle
+
+%Below is an example of the problem environment
+\begin{problem}{1}
+If you roll a fair dice $n$ times:
+\begin{enumerate}
+    \parskip=0in
+    \parsep=0in
+    \itemsep=0.1in
+    \item How many times will the sequence 1,2,3,4,5,6 occur?  What is the probability of this occurring?
+    \item How many times will the sum of the number of 1's and 2's equal the sum of the number of 3's, 4's, 5's and 6's?  What is the probability of this occurring?
+    \item How many times will the sum of the number of 1's and 2's equal the sum of the number of 3's and 4's and equal the sum of the number of 5's and 6's?  What is the probability of this occurring?
+    \item How many times will you roll a 1 twice in succession?  For the purpose of this calculation, the sequence ...11.... counts as once, but so does ...111....  The sequence ...1111... counts as twice.  What is the probability of this occurring?
+    \item How many times will you roll a 1 $k$-times in succession?  As with the previous case, when a 1 is counted as part of a $k$-sequence, it is not counted as part of a subsequent $k$-sequence.  What is the probability of this occurring?
+    \item You have a communications system that transmits bundles of data from a source to a destination.  Most bundles are received correctly. However, there is a random chance of the data in a bundle being in error.  Roughly every $E^{th}$ bundle is in error.  If you transmit $n$ bundles, what is the probability of two bundles in sequence being in error?  what is the probability of $k$ bundles in sequence being in error?
+\end{enumerate}
+
+You may wish to modify your Lab3 program {\tt dice} to give you a
+sense of whether or not your answers look correct.
+\end{problem}
+
+%Below is the solution environment
+\begin{solution}{1}
+\item[]
+\begin{enumerate}
+    \parskip=0in
+    \parsep=0in
+    \itemsep=0.1in
+\item
+\end{enumerate}
+\end{solution}
+
+
+
+\vskip 0.5in
+\newpage
+\begin{problem}{2}
+Prove (using induction) the binomial theorem:
+\[
+(x+a)^n = \sum_{r=0}^n C(n‚ r)x^{n-r}a^r
+\]
+\end{problem}
+\begin{solution}{2}
+\item[]
+\end{solution}
+
+
+\pagebreak
+\pagebreak
+\newpage
+\clearpage
+\begin{problem}{3}
+Is there
+\begin{enumerate}
+    \parskip=0in
+    \parsep=0in
+    \itemsep=0.1in
+    \item a graph with 5 vertices and 3 edges?
+
+    \item a graph with 5 odd-degree vertices with 3 edges?
+
+    \item a connected graph with 5 vertices and 3 edges?
+
+    \item a directed graph with 5 vertices and 3 edges?
+
+    \item a disconnected graph (a graph that is not connected) with 5
+vertices and 7 edges?
+
+    \item a disconnected, directed graph with 5 vertices and 7 edges?
+
+    \item a graph with 3 vertices and 5 edges?
+
+    \item a directed graph with 3 vertices and 5 edges?
+\end{enumerate}
+
+In each case, if there exists such a graph, illustrate it; if not, explain (precisely) why not.
+\end{problem}
+\begin{solution}{3}
+\item[]
+\begin{enumerate}
+\item
+\end{enumerate}
+\end{solution}
+
+\vskip 0.5in
+\newpage
+\pagebreak
+\pagebreak\newpage
+
+\begin{problem}{4} Given the following graph:
+
+\begin{center}
+\includegraphics[scale=0.7]{graph.eps}
+\end{center}
+\begin{enumerate}
+    \item Is this graph connected?
+
+    \item Is this graph complete?  Why/Why not?
+
+    \item What is the minimum degree of the graph?
+
+    \item What is the maximum degree of the graph?
+
+    \item What is the largest clique in the graph?
+
+    \item Is the graph planar? Why/Why not?
+
+    \item What is the shortest path from V1 to V17? How long is it?
+
+    \item What is the longest path from V1 to V17?  How long is it?
+\end{enumerate}
+\end{problem}
+\begin{solution}{4}
+\item[]
+\end{solution}
+
+\vskip 0.5in
+\pagebreak
+
+% \vskip 0.5in
+
+% \begin{problem}{12}
+% \item[]
+% \begin{enumerate}[label=\alph*)]
+% \end{enumerate}
+% \end{problem}
+% \begin{solution}{7}
+% \item[]
+% \begin{enumerate}[label=\alph*)]
+% \end{enumerate}
+% \end{solution}
+
+
+
+
+\end{document}
