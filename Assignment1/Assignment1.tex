@@ -7,6 +7,7 @@
 \usepackage{multicol}
 \usepackage{textcomp}
 \usepackage{mathrsfs}
+\usepackage{adjustbox}
 \usepackage{svg}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
@@ -250,14 +251,33 @@ Given the information above:
 \begin{solution}{7}
 \item[]
 \begin{enumerate}[label=\alph*)]
+\item \begin{minipage}[t]{\linewidth}
+          \raggedright
+          \adjustbox{valign=t}{%
+            \includegraphics[scale=0.3]{(a)}%\\
+          }
+          Better Than Relation over G\\
+           \footnotesize Note: Transitive relations excluded to preserve clarity
+          \end{minipage}
 \item
-\item
-\item
+\begin{minipage}[t]{\linewidth}
+          \raggedright
+          \adjustbox{valign=t}{%
+            \includegraphics[scale=0.3]{(b)}%\\
+          }
+          Better Than or Equal to Relation over G\\
+           \footnotesize Note: Transitive relations and self relations excluded to preserve clarity
+          \end{minipage}
+
+\item The LUB in the better than relationship is $A$. As for the GLB in the better than relation's GLB is $F$. In the better than or equal to relationship, LUB is $A$ and GLB does not exist since we cannot compare $AEG$ and $F$
+
 \item \begin{enumerate}[label=\roman*)]
-\item For the "better than" relation: \\Minimal elements: \{INC, F\};\\
-Maximal elements: \{A\}
+\item For the "better than" relation: \\Minimal elements: \{B, INC, AEG, WD\};\\
+Maximal elements: \{D\}
+\item For the "better than or equal to" relation: \\Minimal elements: \{B, INC, AEG\};\\
+Maximal elements: \{D\}
 \end{enumerate}
-\item
+\item "Better Than" relation is a partial order but due to lack of information the "Better Than or Equal To" is not a partial order
 \end{enumerate}
 \end{solution}
 \pagebreak
@@ -363,7 +383,7 @@ Note the difference between this definition and that of a minimal element ($x \i
 
 
 \vskip 0.5in
-
+\pagebreak
 \begin{problem}{12}Given finite set A with cardinality N :
 \item[]
 \begin{enumerate}[label=\alph*)]
