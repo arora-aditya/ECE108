@@ -75,30 +75,90 @@ Convert the following natural-language text into an equivalent set of propositio
   \parsep=0in
   \itemsep=0in
 \item $P$: Big Bang Theory is correct, $Q$: There was a time before anything existed, $R$: The world will come to an end
+
+
+
 \[
-\frac{P\rightarrow(Q \oplus R),\ \neg Q,\ \neg R}{\neg P}
+\frac{P\rightarrow \neg(Q \leftrightarrow R),\ \neg R,\ }{\neg Q \rightarrow \neg P}
 \]
-We know $\neg Q,\ \neg R$, and thus $(Q \oplus R)$ is $False$ from the first proposition. This clearly implies $\neg P$
+ $\KMproof{
+  \cbblk{
+  	\proofline{\neg Q \rightarrow \neg P}{}
+  }{
+    \proofline{\neg Q}{1 Ass CD}
+    \cbblk{
+      \proofline{\neg P}{}
+    }{
+        \proofline{P}{3 ID}
+        \proofline{P\rightarrow \neg(Q \leftrightarrow R)}{P1}
+        \proofline{\neg (Q \leftrightarrow R)}{4,5 MP}
+        \proofline{\neg R}{P1}
+        \proofline{Q}{5,6 MTP}
+        \proofline{\neg Q}{2}
+    }
+  }
+}$
+
+
+
+% We know $\neg Q,\ \neg R$, and thus $(Q \oplus R)$ is $False$ from the first proposition. This clearly implies $\neg P$
 
 \item $W$: Win a gold medal, $F$: Athlete is fit, $L$: Athlete arrived late for the competition, $I$: Training was interrupted, $B$: Athlete blames the coach, $C$: Athlete gets into the competition
+
 \[
-\frac{W \rightarrow F,\ \neg W \rightarrow (L \oplus I),\ (B \oplus I) \rightarrow \neg C, C}{\neg L}
+\frac{W \rightarrow F,\ \neg W \rightarrow \neg (L \leftrightarrow I),\ \neg (B \leftrightarrow I) \rightarrow \neg C}{C \rightarrow \neg L}
 \]
+
+The given conclusion is not valid. The counter argument for this is:
+$W: T, F:T, L:T, I:F, B: F, C: T$ \\
+The conclusions is false because $C \rightarrow \neg L$ is false but all the premises are true i.e.
+\\ $W \rightarrow F: T$
+\\ $\neg W \rightarrow (L \leftrightarrow I):T$
+\\ $\neg F \rightarrow B: T$
+\\ $\neg (B \leftrightarrow I) \rightarrow \neg C: T$
+\\
+
 \item $H$: Hector wins the battle, $P$: City is plundered by Hector, $K$: Hector gets killed, $E$: Hector goes into the exile, $L$: Priam will lose his kingdom, $W$: War will end  \\
 \[
-\frac{H \rightarrow P,\ \neg H \rightarrow (E \oplus K),\ P \rightarrow L,\ (L \oplus E) \rightarrow W, \neg W}{K}
+\frac{H \rightarrow P,\ \neg H \rightarrow (E \oplus K),\ P \rightarrow L,\ (L \oplus E) \rightarrow W}{\neg W \rightarrow K}
 \]
-The given conclusion is true. This can be established by backtracking the statements.
 
-We know $\neg W$, this implies from the second last proposition that $\neg L$ and $\neg E$. $\neg L$ clearly implies $\neg P$ from the third last proposition. $\neg P$ implies $\neg H$ from the first equation. $\neg H$ now using the second proposition implies $(E \oplus K)$ but we already know $\neg E$, this clearly concludes on $K$ being $True$
-\\
+ $\KMproof{
+  \cbblk{
+  	\proofline{\neg W \rightarrow K}{}
+  }{
+    \proofline{\neg W}{1 Ass CD}
+    \cbblk{
+      \proofline{K}{}
+    }{
+        \proofline{\neg (L \leftrightarrow E) \rightarrow W}{4th Premise}
+        \proofline{(L \leftrightarrow E)}{2,4 Modus Tollens}
+        \proofline{P \rightarrow L}{3rd Premise}
+        \proofline{\neg L}{5 XOR}
+        \proofline{\neg P}{3,5 Modus Tollens}
+        \proofline{H \rightarrow P}{1st Premise}
+        \proofline{\neg H}{8,9 Modus Tollens}
+        \proofline{\neg E}{5 XOR}
+        \proofline{\neg H \rightarrow \neg (E \leftrightarrow K)}{2nd Premise}
+        \proofline{\neg (E \leftrightarrow K)}{10,12 Modus Ponens}
+        \proofline{\neg(K \rightarrow E)}{13 BC}
+        \proofline{K}{11,14 MP}
+    }
+  }
+}$
+
+Thus the given conclusion is true. This can also be established by backtracking the statements.\\
+
+
 \item $O$: Colonel was out of the room when the murder was committed, $R$: Colonel is correct about the weapon used in the murder, $B$: Butler is lying, $K$: Butler knows who the murderer, $L$: Lady Barntree was the murderer
 \[
-\frac{O \rightarrow \neg R,\ B \oplus K,\ \neg L \rightarrow (B \oplus \neg O),\ K \oplus O,\ R}{\neg L}
+\frac{O \rightarrow \neg R,\ \neg (B \leftrightarrow K),\ \neg L \rightarrow \neg(B \leftrightarrow \neg O),\ \neg (K \leftrightarrow O)}{R \rightarrow \neg L}
 \]
+The counter-model is: $O:F, R:F, B:F ,K:T, L:T$. All the premises are true but the conclusion is false
+
 The given conclusion is false. This can be established by backtracking the statements.
 
-We know $R$, this implies that $\neg O$ from the first proposition. Using $\neg O$ in the second last proposition we can say that $K$ is true. Using $K$ in the second proposition we can say that $B$ is false. Using all this we can say that $(B \oplus \neg O)$ is $True$. But since $\neg L \rightarrow (B \oplus \neg O)$ and $(B \oplus \neg O)$ are both true we can not necessarily say that $\neg L$ is $True$
+We know $R$, this implies that $\neg O$ from the first proposition. Using $\neg O$ in the second last proposition we can say that $K$ is true. Using $K$ in the second proposition we can say that $B$ is false. Using all this we can say that $\neg(B \leftrightarrow \neg O)$ is $True$. But since $\neg L \rightarrow \neg(B \leftrightarrow \neg O)$ and $\neg(B \leftrightarrow \neg O)$ are both true we can not necessarily say that $\neg L$ is $True$
 \end{enumerate}
 \end{solution}
 
@@ -139,15 +199,15 @@ T & T & T               & T          & T                                        
 
 \begin{table}[!h]
 \centering
-\caption{Part 2. Clearly satisfiable}
+\caption{Part 2. Clearly a Satisfiable}
 \label{my-label}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-P & Q & $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$ \\ \hline
-F & F & F \\ \hline
-F & T & F \\ \hline
-T & F & T \\ \hline
-T & T & T \\ \hline
+P & Q & $P \rightarrow Q$ & $P \wedge Q$ & $(P \wedge Q) \leftrightarrow (P \rightarrow Q)$ \\ \hline
+F & F & T               & F          & F                                          \\ \hline
+F & T & T               & F          & F                                          \\ \hline
+T & F & F               & F          & T                                          \\ \hline
+T & T & T               & T          & T                                          \\ \hline
 \end{tabular}
 \end{table}
 
@@ -155,13 +215,13 @@ T & T & T \\ \hline
 \centering
 \caption{Part 3. Clearly satisfiable}
 \label{my-label}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-P & Q & $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$ \\ \hline
-F & F & T \\ \hline
-F & T & T \\ \hline
-T & F & T \\ \hline
-T & T & F \\ \hline
+P & Q & $(\lnot P \vee Q)$ & $(P \rightarrow \lnot Q)$ & $(\lnot P \vee Q) \rightarrow (P \rightarrow \lnot Q)$ \\ \hline
+F & F & T & T & T \\ \hline
+F & T & T & T & T \\ \hline
+T & F & F & T & T \\ \hline
+T & T & F & F & F \\ \hline
 \end{tabular}
 \end{table}
 
@@ -169,13 +229,13 @@ T & T & F \\ \hline
 \centering
 \caption{Part 4. Clearly satisfiable}
 \label{my-label}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-P & Q & $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$ \\ \hline
-F & F & T \\ \hline
-F & T & T \\ \hline
-T & F & F \\ \hline
-T & T & T \\ \hline
+P & Q & $(P \rightarrow Q)$ & $((P \rightarrow Q) \rightarrow P)$ & $(((P \rightarrow Q) \rightarrow P) \rightarrow Q)$ \\ \hline
+F & F & T & F & T \\ \hline
+F & T & T & F & T \\ \hline
+T & F & F & T & F \\ \hline
+T & T & T & T & T \\ \hline
 \end{tabular}
 \end{table}
 
@@ -183,13 +243,13 @@ T & T & T \\ \hline
 \centering
 \caption{Part 5. Clearly a Tautology}
 \label{my-label}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-P & Q & $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$ \\ \hline
-F & F & T \\ \hline
-F & T & T \\ \hline
-T & F & T \\ \hline
-T & T & T \\ \hline
+P & Q & $(P \rightarrow Q)$ & $(Q \rightarrow (P \rightarrow Q))$ & $(P \rightarrow (Q \rightarrow (P \rightarrow Q)))$ \\ \hline
+F & F & T & T & T \\ \hline
+F & T & T & T & T \\ \hline
+T & F & F & T & T \\ \hline
+T & T & T & T & T \\ \hline
 \end{tabular}
 \end{table}
 
@@ -197,17 +257,17 @@ T & T & T \\ \hline
 \centering
 \caption{Part 6. Clearly a Tautology}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-P & Q & R & $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$ \\ \hline
-T & T & T & T \\ \hline
-T & T & F & T \\ \hline
-T & F & T & T \\ \hline
-T & F & F & T \\ \hline
-F & T & T & T \\ \hline
-F & T & F & T \\ \hline
-F & F & T & T \\ \hline
-F & F & F & T \\ \hline
+P & Q & R & $((P \wedge \lnot Q) \rightarrow \lnot R)$ & $((P \wedge R) \rightarrow Q)$ & $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$ \\ \hline
+T & T & T & T & T & T \\ \hline
+T & T & F & T & T & T \\ \hline
+T & F & T & F & F & T \\ \hline
+T & F & F & T & T & T \\ \hline
+F & T & T & T & T & T \\ \hline
+F & T & F & T & T & T \\ \hline
+F & F & T & T & T & T \\ \hline
+F & F & F & T & T & T \\ \hline
 \end{tabular}
 \end{table}
 
@@ -215,17 +275,17 @@ F & F & F & T \\ \hline
 \centering
 \caption{Part 7. Clearly a Tautology}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-P & Q & R & $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$ \\ \hline
-T & T & T & T \\ \hline
-T & T & F & T \\ \hline
-T & F & T & T \\ \hline
-T & F & F & T \\ \hline
-F & T & T & T \\ \hline
-F & T & F & T \\ \hline
-F & F & T & T \\ \hline
-F & F & F & T \\ \hline
+P & Q & R & $((P \vee Q) \vee R) \vee S)$ & $(P \vee (Q \vee (R \vee S))$ & $(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))$ \\ \hline
+T & T & T & T & T & T \\ \hline
+T & T & F & F & F & T \\ \hline
+T & F & T & F & F & T \\ \hline
+T & F & F & F & F & T \\ \hline
+F & T & T & F & F & T \\ \hline
+F & T & F & F & F & T \\ \hline
+F & F & T & F & F & T \\ \hline
+F & F & F & F & F & T \\ \hline
 \end{tabular}
 \end{table}
 
@@ -235,25 +295,11 @@ F & F & F & T \\ \hline
 \centering
 \caption{Part 8. Clearly satisfiable}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
-P & Q & R & S & $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$ \\ \hline
-T & T & T & T & T \\ \hline
-T & T & T & F & T \\ \hline
-T & T & F & T & T \\ \hline
-T & T & F & F & T \\ \hline
-T & F & T & T & T \\ \hline
-T & F & T & F & F \\ \hline
-T & F & F & T & T \\ \hline
-T & F & F & F & F \\ \hline
-F & T & T & T & T \\ \hline
-F & T & T & F & F \\ \hline
-F & T & F & T & T \\ \hline
-F & T & F & F & T \\ \hline
-F & F & T & T & T \\ \hline
-F & F & T & F & F \\ \hline
-F & F & F & T & T \\ \hline
-F & F & F & F & T \\ \hline
+P & Q & R & S & $((P \rightarrow Q) \rightarrow R) \rightarrow S)$ & $(P \rightarrow (Q \rightarrow (R \rightarrow S))$ & $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$ \\ \hline
+T & T & T & T & T & T & T \\ \hline
+T & F & T & F & F & T & F \\ \hline
 \end{tabular}
 \end{table}
 
@@ -261,41 +307,41 @@ F & F & F & F & T \\ \hline
 \centering
 \caption{Part 9. Clearly a Tautology}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-P & Q & R & S & T & $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$ \\ \hline
-T & T & T & T & T & T                                                                    \\ \hline
-T & T & T & T & F & T                                                                    \\ \hline
-T & T & T & F & T & T                                                                    \\ \hline
-T & T & T & F & F & T                                                                    \\ \hline
-T & T & F & T & T & T                                                                    \\ \hline
-T & T & F & T & F & T                                                                    \\ \hline
-T & T & F & F & T & T                                                                    \\ \hline
-T & T & F & F & F & T                                                                    \\ \hline
-T & F & T & T & T & T                                                                    \\ \hline
-T & F & T & T & F & T                                                                    \\ \hline
-T & F & T & F & T & T                                                                    \\ \hline
-T & F & T & F & F & T                                                                    \\ \hline
-T & F & F & T & T & T                                                                    \\ \hline
-T & F & F & T & F & T                                                                    \\ \hline
-T & F & F & F & T & T                                                                    \\ \hline
-T & F & F & F & F & T                                                                    \\ \hline
-F & T & T & T & T & T                                                                    \\ \hline
-F & T & T & T & F & T                                                                    \\ \hline
-F & T & T & F & T & T                                                                    \\ \hline
-F & T & T & F & F & T                                                                    \\ \hline
-F & T & F & T & T & T                                                                    \\ \hline
-F & T & F & T & F & T                                                                    \\ \hline
-F & T & F & F & T & T                                                                    \\ \hline
-F & T & F & F & F & T                                                                    \\ \hline
-F & F & T & T & T & T                                                                    \\ \hline
-F & F & T & T & F & T                                                                    \\ \hline
-F & F & T & F & T & T                                                                    \\ \hline
-F & F & T & F & F & T                                                                    \\ \hline
-F & F & F & T & T & T                                                                    \\ \hline
-F & F & F & T & F & T                                                                    \\ \hline
-F & F & F & F & T & T                                                                    \\ \hline
-F & F & F & F & F & T                                                                    \\ \hline
+P & Q & R & S & T & $(P \rightarrow (\lnot R \rightarrow \lnot S))$ & $(S \rightarrow (P \vee \lnot T))$ & $(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee (S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))$ \\ \hline
+T & T & T & T & T & T & T & T                                                                    \\ \hline
+T & T & T & T & F & T & T & T                                                                    \\ \hline
+T & T & T & F & T & T & T & T                                                                    \\ \hline
+T & T & T & F & F & T & T & T                                                                    \\ \hline
+T & T & F & T & T & F & T & T                                                                    \\ \hline
+T & T & F & T & F & F & T & T                                                                    \\ \hline
+T & T & F & F & T & T & T & T                                                                    \\ \hline
+T & T & F & F & F & T & T & T                                                                    \\ \hline
+T & F & T & T & T & T & T & T                                                                    \\ \hline
+T & F & T & T & F & T & T & T                                                                    \\ \hline
+T & F & T & F & T & T & T & T                                                                    \\ \hline
+T & F & T & F & F & T & T & T                                                                    \\ \hline
+T & F & F & T & T & T & T & T                                                                    \\ \hline
+T & F & F & T & F & T & T & T                                                                    \\ \hline
+T & F & F & F & T & T & T & T                                                                    \\ \hline
+T & F & F & F & F & T & T & T                                                                    \\ \hline
+F & T & T & T & T & T & T & T                                                                    \\ \hline
+F & T & T & T & F & T & T & T                                                                    \\ \hline
+F & T & T & F & T & T & T & T                                                                    \\ \hline
+F & T & T & F & F & T & T & T                                                                    \\ \hline
+F & T & F & T & T & T & T & T                                                                    \\ \hline
+F & T & F & T & F & T & T & T                                                                    \\ \hline
+F & T & F & F & T & T & T & T                                                                    \\ \hline
+F & T & F & F & F & T & T & T                                                                    \\ \hline
+F & F & T & T & T & T & F & T                                                                    \\ \hline
+F & F & T & T & F & T & T & T                                                                    \\ \hline
+F & F & T & F & T & T & T & T                                                                    \\ \hline
+F & F & T & F & F & T & T & T                                                                    \\ \hline
+F & F & F & T & T & T & F & T                                                                    \\ \hline
+F & F & F & T & F & T & T & T                                                                    \\ \hline
+F & F & F & F & T & T & T & T                                                                    \\ \hline
+F & F & F & F & F & T & T & T                                                                    \\ \hline
 \end{tabular}
 \end{table}
 
@@ -528,7 +574,7 @@ Therefore this statement is a Tautology
 \item[]
 
 
-{1.} $\KMproof{
+{\textbf{1.}} $\KMproof{
   \cbblk{
   	\proofline{(P \wedge Q) \rightarrow (P \rightarrow Q)}{2--7 Conditionalization}
   }{
@@ -542,32 +588,31 @@ Therefore this statement is a Tautology
   }
 }$
 
-{5.}$\KMproof{
+{\textbf{5.}}$\KMproof{
   \cbblk{
-  	\proofline{(P \rightarrow (Q \rightarrow (P \rightarrow Q)))}{2--8 Conditionalization}
+  	\proofline{(P \rightarrow (Q \rightarrow (P \rightarrow Q)))}{2--7 Conditionalization}
   }{
     \proofline{P}{1 Ass CD}
-    \proofline{Q}{1 Ass CD}
     \cbblk{
-      \proofline{(Q \rightarrow (P \rightarrow Q))}{6--7 Conditionalization}
+      \proofline{(Q \rightarrow (P \rightarrow Q))}{3--7 Sub Derivation}
     }{
-        \proofline{Q}{3 Repeat}
+        \proofline{Q}{3 Ass CD}
         \cbblk{
-            \proofline{(P\rightarrow Q)}{6--7 Conditionalization}
+            \proofline{(P\rightarrow Q)}{7--8 Sub Derivation}
         }{
-        \proofline{P}{2 Repeat}
-        \proofline{Q}{3 Repeat}
+        \proofline{P}{5 CD}
+        \proofline{Q}{4 Repeat}
         }
     }
   }
 }$
-\\Citing De-Morgan's Law proff from question 5\\
-{6.}$\KMproof{
+\pagebreak\\
+{\textbf{6.}} Citing De-Morgan's Law proof from question 5\\$\KMproof{
   \cbblk{
-  	\proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)}{2--20 Conditionalization}
+  	\proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)}{2--21 Conditionalization}
   }{
     \cbblk{
-      \proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \rightarrow ((P \wedge R) \rightarrow Q)}{1 Subderivation}
+      \proofline{((P \wedge \lnot Q) \rightarrow \lnot R) \rightarrow ((P \wedge R) \rightarrow Q)\ \ \ \ \ \ \ \ \ \ \ \ \  }{1 Subderivation}
     }{
         \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{2 Ass CD}
         \cbblk{
@@ -604,58 +649,114 @@ Therefore this statement is a Tautology
 
 % {6.} $((P \wedge \lnot Q) \rightarrow \lnot R) \leftrightarrow ((P \wedge R) \rightarrow Q)$
 
-{7.} $\KMproof{
+{\textbf{7.}}
+$$\textbf{Property 1: } \frac{\neg(P \vee Q)}{\neg P}$$
+{
+  \Tree
+    [.{$\neg (P \vee Q):T, \neg P: F$}
+        [.{$P: T$}
+            [.{$P \vee Q: F$}
+                [.{$P:F, Q:F$\\x} ]
+            ]
+        ]
+    ]
+
+}
+$\KMproof{
   \cbblk{
-  	\proofline{(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))}{2--20 Conditionalization}
+  	\proofline{(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))}{2--13 Conditionalization}
   }{
     \cbblk{
-      \proofline{(((P \vee Q) \vee R) \vee S) \rightarrow (P \vee (Q \vee (R \vee S)))}{1 Subderivation}
+      \proofline{(((P \vee Q) \vee R) \vee S) \rightarrow (P \vee (Q \vee (R \vee S)))\ \ \ \ \ \ \ \ \ \ \ \ \  }{1 Subderivation}
     }{
         \proofline{(((P \vee Q) \vee R) \vee S)}{2 Ass CD}
         \cbblk{
-            \proofline{(P \vee (Q \vee (R \vee S)))}{7--8 Sub-Derivation}
+            \proofline{(P \vee (Q \vee (R \vee S)))}{Sub derivation}
         }{
-            \proofline{P \wedge R}{4 Conditional Derivation}
+            \proofline{\neg (P \vee (Q \vee (R \vee S)))}{4 ID}
+            \proofline{\neg P}{5 Property1}
+            \proofline{\neg (Q \vee (R \vee S))}{5 Property1}
+            \proofline{\neg Q}{7 Property1}
+            \proofline{\neg (R \vee S)}{5 Property1}
+            \proofline{\neg R}{9 Property1}
+            \proofline{\neg S}{9 Property1}
+            \proofline{(P \vee Q) \vee R}{3, 11 MTP}
+            \proofline{P \vee Q}{10,13 MTP}
+            \proofline{P}{8,13 MTP}
         }
     }
     \cbblk{
       \proofline{(P \vee (Q \vee (R \vee S))) \rightarrow  (((P \vee Q) \vee R) \vee S)}{1 Subderivation}
     }{
-        \proofline{((P \wedge R) \rightarrow Q)}{12 Ass CD}
+        \proofline{(P \vee (Q \vee (R \vee S)))}{15 Ass CD}
         \cbblk{
-            \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{7--8 Sub-Derivation}
+            \proofline{(((P \vee Q) \vee R) \vee S)}{18--8 Sub-Derivation}
         }{
-            \proofline{P \wedge \lnot Q}{12 Conditional Derivation}
+            \proofline{\neg (((P \vee Q) \vee R) \vee S)}{17 ID}
+            \proofline{\neg S}{18 Property1}
+            \proofline{\neg ((P \vee Q) \vee R)}{18 Property1}
+            \proofline{\neg R}{20 Property1}
+            \proofline{\neg (P \vee Q)}{20 Property1}
+            \proofline{\neg P}{22 Property1}
+            \proofline{\neg Q}{22 Property1}
+            \proofline{Q \vee (R \vee S)}{23,24 MTP}
+            \proofline{(R \vee S)}{24,25 MTP}
+            \proofline{R}{19,26 MTP}
         }
     }
+    \proofline{(((P \vee Q) \vee R) \vee S) \leftrightarrow (P \vee (Q \vee (R \vee S)))}{2,15 CB,DD}
   }
 }$
 
+\newpage
+{\textbf{9.}}
 
-{9.} $\KMproof{
+$$\textbf{Property 1: } \frac{\neg(P \vee Q)}{\neg P}$$
+{
+\begin{center}
+  \Tree
+    [.{$\neg (P \vee Q):T, \neg P: F$}
+        [.{$P: T$}
+            [.{$P \vee Q: F$}
+                [.{$P:F, Q:F$\\x} ]
+            ]
+        ]
+    ]
+\end{center}
+}
+
+\begin{table}[!h]
+\centering
+\caption{Proof for $P \rightarrow Q = \lnot P \vee Q$}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+P & Q & $P \rightarrow Q$ & $\lnot P \vee Q$ \\ \hline
+T & T & T                 & T                \\ \hline
+T & F & F                 & F                \\ \hline
+F & T & T                 & T                \\ \hline
+T & F & T                 & T                \\ \hline
+\end{tabular}
+\end{table}
+
+$\textbf{Property 2: }P \rightarrow Q = \lnot P \vee Q $ \\ \\
+
+Referencing De-Morgan's law from Question 5
+
+$\KMproof{
   \cbblk{
-  	\proofline{(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee ((S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))}{2--20 Conditionalization}
+  	\proofline{\neg(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee (S \rightarrow (P \vee \lnot T)) \vee (\lnot Q \rightarrow R))}{2--9 Conditionalization}
   }{
-    \cbblk{
-      \proofline{(((P \vee Q) \vee R) \vee S) \rightarrow (P \vee (Q \vee (R \vee S)))}{1 Subderivation}
-    }{
-        \proofline{(((P \vee Q) \vee R) \vee S)}{2 Ass CD}
-        \cbblk{
-            \proofline{(P \vee (Q \vee (R \vee S)))}{7--8 Sub-Derivation}
-        }{
-            \proofline{P \wedge R}{4 Conditional Derivation}
-        }
-    }
-    \cbblk{
-      \proofline{(P \vee (Q \vee (R \vee S))) \rightarrow  (((P \vee Q) \vee R) \vee S)}{1 Subderivation}
-    }{
-        \proofline{((P \wedge R) \rightarrow Q)}{12 Ass CD}
-        \cbblk{
-            \proofline{((P \wedge \lnot Q) \rightarrow \lnot R)}{7--8 Sub-Derivation}
-        }{
-            \proofline{P \wedge \lnot Q}{12 Conditional Derivation}
-        }
-    }
+        \proofline{\neg(P \rightarrow (\lnot R \rightarrow \lnot S)) \vee (S \rightarrow (P \vee \lnot T)) \vee (Q \vee R))}{1 ID}
+        \proofline{\neg(P \rightarrow (\neg R \rightarrow \neg S))}{2 Property1}
+        \proofline{\neg(\neg P \vee (\neg R \rightarrow \neg S))}{2 Property2}
+        \proofline{P}{2 Property1}
+        \proofline{\neg((S \rightarrow (P \vee \lnot T)) \vee (Q \vee R))}{2 Property1}
+        \proofline{\neg(S \rightarrow (P \vee \lnot T))}{6 Property1}
+        \proofline{\neg(\neg S \vee (P \vee \lnot T))}{7 Property2}
+        \proofline{\neg(P \vee \neg T)}{8 Property1}
+        \proofline{\neg P}{10 Property1}
+        \proofline{P}{5}
   }
 }$
 \end{solution}
@@ -700,7 +801,24 @@ One technique for determining if a set of premises is inconsistent is to determi
 \end{problem}
 \begin{solution}{5}
 \item[]
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}
+    \item If our premises form a contradiction, then we can say that
+$$\neg(P_1 \wedge P_2 \ldots \wedge P_N ) → T$$
+We first convert it into a tautology then proceed normally with our Semantic Tableau\\
+We would then use a semantic tableau to show contradiction occur if we start with:
+$$\neg(P_1 \wedge P_2 \ldots \wedge P_N ) : F$$
+which equals
+$$ == (P_1 \wedge P_2 \ldots \wedge P_N ) : T$$
+We will then as in any other ST, split the terms inside the dis-junctions showing that we do have a tautology. \\ This would this show the contradiction
+
+We would also be able to use KM derivation ans we will again start with $$Show\ \ \neg(P_1 \wedge P_2 \ldots \wedge P_N )$$
+which will evidently turn to
+$$(P_1 \wedge P_2 \ldots \wedge P_N)\ \ \ \ 1,ID$$
+If this turns out to be True we would have proved that this is a tautology.
+But since we took the negation of our premises, we would have then proven that our premises form a contradiction
+
+    \item Having the dis-junction of premises as a tautology shouldn't cause a problem but just that the logical implication of that premise will also turn out to be a tautology. This just means that the logical implication is also basically part of the premises themselves and that there is no need of an explicit proof
+    \item \begin{enumerate}[label=(\alph*)]
   \itemsep=0in
 \item $S$: Sales of houses fall off, $I$: Interest rates rise, $A$: Auctioneers are happy \\
 Propositional formul\ae: $I \rightarrow S,\ S \rightarrow \lnot A,\ I,\ A$ \\ (They are in the same order as the given statements)
@@ -711,40 +829,43 @@ Conjunction of Premises $= (I \rightarrow S) \wedge (S \rightarrow \lnot A) \wed
 \centering
 \caption{The conjunction is clearly always false}
 \label{my-label}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-I & S & A & $(I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A$ \\ \hline
-T & T & T & F \\ \hline
-T & T & F & F \\ \hline
-T & F & T & F \\ \hline
-T & F & F & F \\ \hline
-F & T & T & F \\ \hline
-F & T & F & F \\ \hline
-F & F & T & F \\ \hline
-F & F & F & F \\ \hline
+I & S & A & $(I \rightarrow S)$ & $S \rightarrow \lnot A$ & $(I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A$ \\ \hline
+T & T & T & T & F & F \\ \hline
+T & T & F & T & T & F \\ \hline
+T & F & T & F & T & F \\ \hline
+T & F & F & F & T & F \\ \hline
+F & T & T & T & F & F \\ \hline
+F & T & F & T & T & F \\ \hline
+F & F & T & T & T & F \\ \hline
+F & F & F & T & T & F \\ \hline
 \end{tabular}
 \end{table}
 
-\item $\KMproof{
+\item {$\KMproof{
   \cbblk{
   	\proofline{\lnot((I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A)}{2--8 Conditionalization}
   }{
-    \proofline{I}{3rd Premise}
-    \proofline{(I \rightarrow S)}{1st Premise}
-    \proofline{(S \rightarrow \lnot A)}{2nd Premise}
-    \proofline{A}{4th Premise}
+    \proofline{I}{2 SIMP}
+    \proofline{(I \rightarrow S)}{2 SIMP}
+    \proofline{(S \rightarrow \lnot A)}{2 SIMP}
+    \proofline{A}{2 SIMP}
     \proofline{\lnot (\lnot A)}{5 Double Negation}
     \proofline{\lnot S}{3,6 Modus Tollens}
     \proofline{\lnot I}{2,7 Modus Tollens}
   }
-}$
+}$\\
+Thus $((I \rightarrow S) \wedge (S \rightarrow \lnot A) \wedge I \wedge A)$ is a contradiction
+}
 
+\end{enumerate}
 \end{enumerate}
 \end{solution}
 
 
-\vskip 0.5in
-\pagebreak
+\vskip 1.5in
+\newpage
 \begin{problem}{6}Convert the following propositions to Conjunctive Normal Form (CNF) with at most 3 literals per clause
 \begin{enumerate}
   \parskip=0in
@@ -763,26 +884,104 @@ F & F & F & F \\ \hline
 \end{problem}
 \begin{solution}{6}
 \item[]
+Using De-Morgan's law in all the proofs. Citing Proof here from question 7 for clarity. Also using the property shown below:
+\begin{table}[!h]
+\centering
+\caption{Proof for $P \rightarrow Q = \lnot P \vee Q$}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+P & Q & $P \rightarrow Q$ & $\lnot P \vee Q$ \\ \hline
+T & T & T                 & T                \\ \hline
+T & F & F                 & F                \\ \hline
+F & T & T                 & T                \\ \hline
+T & F & T                 & T                \\ \hline
+\end{tabular}
+\end{table}
+
+$P \rightarrow Q = \lnot P \vee Q $ (Property) \\ \\
 \begin{enumerate}
   \parskip=0in
   \parsep=0in
   \itemsep=0in
 \item True
-\item $P$
-\item $\lnot P \vee \lnot Q$
-\item $\lnot P \vee Q$
+\item
+$(P \wedge Q) \leftrightarrow (P \rightarrow Q)$\\
+$= (P \wedge Q)\leftrightarrow(\neg P \vee Q)$\\
+$= ((P \wedge Q)\rightarrow(\neg P \vee Q))\wedge((\neg P \vee Q)\rightarrow(P \wedge Q))$\\
+$= (\neg (P \wedge Q)\vee(\neg P \vee Q))\wedge(\neg(\neg P \vee Q)\vee (P \wedge Q))$\\
+$= (\neg P \vee  \neg Q)\vee (\neg P \vee Q))\wedge((P \wedge \neg Q)\vee (P \wedge Q))$\\
+$= (\neg P \vee \neg Q \vee \neg P \vee Q)\wedge((P \wedge \neg Q)\vee (P \wedge Q)) (P \wedge \neg Q)\vee(P \wedge Q)$\\
+$= ((P \wedge \neg Q)\vee P)\wedge((P \wedge \neg Q)\vee Q)$\\
+$= ((P \vee P)\wedge(\neg Q \vee P)\wedge((P \vee Q)\wedge(\neg Q\vee Q)$\\
+$= P \wedge(\neg Q\vee P)\wedge((P \vee Q)$\\
+$= P$
+
+\item $(\neg P \vee Q)\rightarrow (P \rightarrow \neg Q)$\\
+$= \neg (\neg P \vee Q)\vee (P \rightarrow \neg Q)$\\
+$= \neg (\neg P \vee Q)\vee (\neg P \vee \neg Q)$\\
+$= (P \wedge \neg Q)\vee (\neg P \vee \neg Q)$\\
+$= (P \vee (\neg P \vee \neg Q))\wedge ((\neg Q)\vee (\neg P \vee \neg Q))$\\
+$= \neg P \vee  \neg Q$\\
+\item $(((P \rightarrow Q)\rightarrow P)\rightarrow Q) $\\
+$= (((\neg P \vee Q)\rightarrow P)\rightarrow Q) $\\
+$= ((\neg (\neg P \vee Q)\vee P)\rightarrow Q) $\\
+$= (\neg (\neg (\neg P \vee Q)\vee P)\vee Q) $\\
+$= (\neg ((P \wedge  \neg Q)\vee P)\vee Q) $\\
+$= (\neg ((P \vee P)\wedge  (\neg Q\vee P))\vee Q) $\\
+$= ((\neg (P \vee P)\vee \neg (\neg Q\vee P))\vee Q) $\\
+$= ((\neg P \vee (Q\wedge  \neg P))\vee Q) $\\
+$= (((\neg P \vee Q)\wedge  (\neg P \vee \neg P))\vee Q) $\\
+$= (((\neg P \vee Q)\wedge  \neg P)\vee Q) $\\
+$= (\neg P \vee Q)\vee Q)\wedge  (\neg P \vee Q) $\\
+$= (\neg P \vee Q)\wedge  (\neg P \vee Q)$\\
+$= \neg P \vee  Q $
 \item True
 \item True
 \item True
-\item $(\lnot P \vee Q \vee S) \wedge (P \vee \lnot R \vee S)$
-% Using the truth table to derive the product of sums format: \\
-% $(P \vee \lnot Q \vee R \vee \lnot S) \wedge (P \vee Q \vee R \vee S) \wedge (P \vee Q \vee R \vee S) \wedge (\lnot P \vee \lnot Q \vee R \vee \lnot S)$
+\item $(\lnot P \vee Q \vee S) \wedge (P \vee \lnot R \vee S)$\\
+
+\begin{table}[!h]
+\centering
+\caption{Part 8. Clearly satisfiable}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+P & Q & R & S & $(((P \rightarrow Q) \rightarrow R) \rightarrow S) \leftrightarrow (P \rightarrow (Q \rightarrow (R \rightarrow S)))$ \\ \hline
+T & T & T & T & T \\ \hline
+T & T & T & F & T \\ \hline
+T & T & F & T & T \\ \hline
+T & T & F & F & T \\ \hline
+T & F & T & T & T \\ \hline
+T & F & T & F & F \\ \hline
+T & F & F & T & T \\ \hline
+T & F & F & F & F \\ \hline
+F & T & T & T & T \\ \hline
+F & T & T & F & F \\ \hline
+F & T & F & T & T \\ \hline
+F & T & F & F & T \\ \hline
+F & F & T & T & T \\ \hline
+F & F & T & F & F \\ \hline
+F & F & F & T & T \\ \hline
+F & F & F & F & T \\ \hline
+\end{tabular}
+\end{table}
+
+Using the truth table to derive the product of sums format: \\
+$(\lnot P \vee Q \vee \lnot R \vee S) \wedge (\lnot P \vee Q \vee R \vee S) \wedge (P \vee \lnot Q \vee \lnot R \vee S) \wedge (P \vee Q \vee \lnot R \vee S)$\\
+$= (\lnot P \vee Q \vee S \vee \lnot R) \wedge (\lnot P \vee Q \vee S \vee R) \wedge (P \vee \lnot R \vee S \vee \lnot Q) \wedge (P \vee \lnot R \vee S \vee Q)$ \ \ \ \ \ \ \ \ \ \ \ \  [$\vee$ is commutative/associative]\\
+$= ((\lnot P \vee Q \vee S) \vee \lnot R) \wedge ((\lnot P \vee Q \vee S) \vee R) \wedge ((P \vee \lnot R \vee S) \vee \lnot Q) \wedge ((P \vee \lnot R \vee S) \vee Q)$\\
+$= ((\lnot P \vee Q \vee S) \vee \lnot R) \wedge ((\lnot P \vee Q \vee S) \vee R) \wedge ((P \vee \lnot R \vee S) \vee \lnot Q) \wedge ((P \vee \lnot R \vee S) \vee Q)$\\
+$= (((\lnot P \vee Q \vee S) \vee \lnot R) \wedge ((\lnot P \vee Q \vee S) \vee R)) \wedge (((P \vee \lnot R \vee S) \vee \lnot Q) \wedge ((P \vee \lnot R \vee S) \vee Q))$\\
+$= (((\lnot P \vee Q \vee S)) \wedge (\lnot R \vee R)) \wedge (((P \vee \lnot R \vee S)) \wedge (\lnot Q \vee Q))$\ \ \ \ \ \ \ \ \ \ \ \ \ \  [De-Morgan's Law]\\
+$= (\lnot P \vee Q \vee S) \wedge (P \vee \lnot R \vee S)$\ \ \ \ \ \ \ \ \ \ \ \ \ \  [$(\lnot Q \vee Q) : T$]
 \item True
 \end{enumerate}
 \end{solution}
 
 
 \vskip 0.5in
+\pagebreak
 \begin{problem}{7}
 Define:
 \[
@@ -807,30 +1006,65 @@ Hint: in addition to basic Kalish-Montegue derivation, you will need to add indu
 \end{problem}
 \begin{solution}{7}
 \item[]
-$\KMproof{
-  \cbblk{
-  	\proofline{(((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))\rightarrow(P\rightarrow R))}{2--13 Conditionalization}
-  }{
-    \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{Supposition}
-    \cbblk{
-      \proofline{(P\rightarrow R)}{4--13 Conditionalization}
-    }{
-      \proofline{P}{Supposition}
-      \proofline{((P\rightarrow Q)\land (\neg R\rightarrow\neg Q))}{2 Repeat}
-      \proofline{(P\rightarrow Q)}{5 Simplification}
-      \proofline{Q}{4, 6 Modus Ponens}
-      \proofline{(\neg R\rightarrow\neg Q)}{5 Simplification}
-      \cbblk{
-        \proofline{R}{10--13 Reductio ad Absurdum}
-      }{
-        \proofline{\neg R}{Supposition}
-        \proofline{(\neg R\rightarrow\neg Q)}{8 Repeat}
-        \proofline{\neg Q}{10, 11 Modus Ponens}
-        \proofline{Q}{7 Repeat}
-      }
-    }
-  }
-}$
+\begin{table}[!h]
+\centering
+\caption{Proof using Truth Table of base case $P_{1} \wedge P_{2} = \lnot(\lnot P_{1} \vee \lnot P_{2})$}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$P_{1}$ & $P_{2}$ & $P_{1} \wedge P_{2}$ & $(\lnot P_{1} \vee \lnot P_{2})$ & $\lnot(\lnot P_{1} \vee \lnot P_{2})$ \\ \hline
+T & T & T     & F                 & T                    \\ \hline
+T & F & F     & T                 & F                    \\ \hline
+F & T & F     & T                 & F                    \\ \hline
+F & F & F     & T                 & F                    \\ \hline
+\end{tabular}
+\end{table}
+
+Now let us assume $$P(y) =
+\bigwedge_{i = 1}^y P_i = P_1 \wedge P_2 \ldots \wedge P_y$$\\
+Assuming $$P(n) = \lnot \bigvee_{i = 1}^n (\lnot P_i)$$ as True we will try to show that $P(n+1)$ is True\\
+We know $P(n) \wedge P_{n+1} = P(n+1)$
+$$\Rightarrow P(n+1) = (\bigwedge_{i = 1}^n P_i) \wedge P_{n+1}  = (\lnot \bigvee_{i = 1}^n (\lnot P_i)) \wedge P_{n+1}$$
+$$\Rightarrow P(n+1) = \lnot (\lnot (\lnot \bigvee_{i = 1}^n (\lnot P_i)) \vee (\lnot P_{n+1}))\ \  [Using\ the\ property\ proved\ from\ base\ case]$$
+$$\Rightarrow P(n+1) = \lnot (\bigvee_{i = 1}^n (\lnot P_i) \vee (\lnot P_{n+1}))$$
+$$\Rightarrow P(n+1) = \lnot (\bigvee_{i = 1}^{n+1} (\lnot P_i))$$
+$$\Rightarrow P(n+1) = \lnot \bigvee_{i = 1}^{n+1} (\lnot P_i)$$
+
+Thus we have proved $P(n+1)$ from $P(n)$, and thus using the Principle of Mathematical Induction we have proved \[
+\bigwedge_{i = 1}^N P_i \leftrightarrow \lnot \bigvee_{i = 1}^N (\lnot P_i)
+\]
+
+\pagebreak
+
+\begin{table}[!h]
+\centering
+\caption{Proof using Truth Table of base case $P_{1} \vee P_{2} = \lnot(\lnot P_{1} \wedge \lnot P_{2})$ }
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$P_{1}$ & $P_{2}$ & $P_{1} \vee P_{2}$ & $(\lnot P_{1} \wedge \lnot P_{2})$ & $\lnot(\lnot P_{1} \wedge \lnot P_{2})$ \\ \hline
+T & T & T     & F                 & T                    \\ \hline
+T & F & T     & F                 & T                   \\ \hline
+F & T & T     & F                 & T                    \\ \hline
+F & F & F     & T                 & F                    \\ \hline
+\end{tabular}
+\end{table}
+
+Now let us assume $$P(y) =
+\bigvee_{i = 1}^y P_i = P_1 \vee P_2 \ldots \vee P_y$$\\
+Assuming $$P(n) = \lnot \bigwedge_{i = 1}^n (\lnot P_i)$$ as True we will try to show that $P(n+1)$ is True\\
+We know $P(n) \vee P_{n+1} = P(n+1)$
+$$\Rightarrow P(n+1) = (\bigvee_{i = 1}^n P_i) \vee P_{n+1}  = (\lnot \bigwedge_{i = 1}^n (\lnot P_i)) \vee P_{n+1}$$
+$$\Rightarrow P(n+1) = \lnot (\lnot (\lnot \bigwedge_{i = 1}^n (\lnot P_i)) \wedge (\lnot P_{n+1}))\ \  [Using\ the\ property\ proved\ from\ base\ case]$$
+$$\Rightarrow P(n+1) = \lnot (\bigwedge_{i = 1}^n (\lnot P_i) \wedge (\lnot P_{n+1}))$$
+$$\Rightarrow P(n+1) = \lnot (\bigwedge_{i = 1}^{n+1} (\lnot P_i))$$
+$$\Rightarrow P(n+1) = \lnot \bigwedge_{i = 1}^{n+1} (\lnot P_i)$$
+
+Thus we have proved $P(n+1)$ from $P(n)$, and thus using the Principle of Mathematical Induction we have proved \[
+\bigvee_{i = 1}^N P_i \leftrightarrow \lnot \bigwedge_{i = 1}^N (\lnot P_i)
+\]
+
+
 \end{solution}
 \vskip 0.5in
 
