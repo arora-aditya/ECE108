@@ -1,0 +1,77 @@
+DICE
+(Q1) Only 1 dice
+
+10 ROLL:
+1: 20%
+2: 10%
+3: 10%
+4: 20%
+5: 40%
+6: 0%
+1000 ROLL:
+1: 16.4%
+2: 19.2%
+3: 15.7%
+4: 15.4%
+5: 17.2%
+6: 16.1%
+1000000 ROLL:
+1: 16.5934%
+2: 16.665%
+3: 16.699%
+4: 16.6982%
+5: 16.6491%
+6: 16.6953%
+
+As we can see here as we increase the number of dice rolls we get closer and closer to the theoretical expected values 1/6 = 0.1666666.
+For the 10 roll sample the results vary highly but we can see that for the 100 samples cases the numbers are closely approaching the theoretical value of 0.1666666.
+
+(Q2)
+1 x 100 rolls SPLIT:
+SPLIT:0
+10000 x 100 rolls SPLIT:
+SPLIT:0.083
+
+When we do only 100 rolls once we see that the probability of a split is zero, but when we run the experiment 10000 times we see that the value is not 0.5 but instead much lower around 0.080. When we run this code multiple values we see that this value ranges around 0.080 and is not in accordance with our theoretical predictions
+
+(Q3)
+
+2 DICE 10000 rolls:
+2: 2.95%
+3: 5.53%
+4: 8.19%
+5: 11.36%
+6: 14.05%
+7: 16.9%
+8: 13.63%
+9: 10.83%
+10: 8.17%
+11: 5.4%
+12: 2.99%
+
+When we do 10000 rolls of 2 dice we see that the probability of each of the sum 7 is maximum and the curve that is formed by plotting these sums approximates a gaussian distribution. This is because 7 can be formed 6 ways but others sums can be formed lesser number of ways with 2, 12 forming using only one way each. This is also the reason why the stakes on them are higher
+
+(Q4)
+
+FRACTION of BUST Before Target(10): 0.0081
+FRACTION of BUST Before Target(11): 0.018
+FRACTION of BUST Before Target(12): 0.0153
+FRACTION of BUST Before Target(13): 0.0547
+FRACTION of BUST Before Target(14): 0.0953
+FRACTION of BUST Before Target(15): 0.1572
+FRACTION of BUST Before Target(16): 0.2326
+FRACTION of BUST Before Target(17): 0.3064
+FRACTION of BUST Before Target(18): 0.416
+FRACTION of BUST Before Target(19): 0.5247
+FRACTION of BUST Before Target(20): 0.6529
+FRACTION of BUST Before Target(21): 0.801
+
+The most ideal target to reach will be 19 since you can reach 18 without busting over maximum amount of times, while also being relatively high to beat the dealer.
+
+(Q5) 0.2407 
+The target in this case was taken to be 18 because it has the lowest chance to win while still beating the dealer who generally stops at the target of 17 [source: https://en.wikipedia.org/wiki/Blackjack#Rules_of_play_at_casinos]
+This fraction is significantly low since we are only betting correct approximately only once out of four turns. 
+This value is expected since we are betting high at low threshold of the count (betting at high at 2). 
+What we should do instead is bet high at a significanly higher count to increase our chances of betting correctly.
+
+
