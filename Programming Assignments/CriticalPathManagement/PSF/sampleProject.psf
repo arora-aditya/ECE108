@@ -1,0 +1,83 @@
+% Project Specification Format
+%
+% Default filename convention: file ends ".psf"
+%
+% (1) Comments are identified by '%' as the first character of the line.
+%     They may appear at any point in the file, and are simply ignored.
+% (2) Tasks begin after the identifier 'Tasks' which should only appear 
+%     once in the file and must be on a line of its own, with no leading
+%     whitespace.
+% (3) Task information, excluding dependencies, is defined as
+%     Number, Expected Time, Best-Case Time, Worst-Case Time, Name of Task
+%     The five items are comma-separated, and commas cannot appear elsewhere
+%     in the line.
+%     The task numbers run from 1 to however many are needed.  They do not
+%     have to be sequential, nor is it necessary for there to be no gaps in
+%     the numbering.  That said, it is preferable if that is the case.
+%     The Expected Time is a floating-point number that specifies how long
+%     the task is expected to take to completion.  Time is not specified
+%     in hours, days, weeks, whatever, specifically so that there is no
+%     particular need to convert between formats.  The only assumption is
+%     that all times listed in the file are in the same units.
+%     The Best-Case and Worst-Case Times are the least and greatest amount
+%     of time the particular task is expected to take.
+%     The Task Name is the last item on the line, and should be an ASCII
+%     string, without commas, no longer than MAX_TASK_NAME_LENGTH chars
+%     long.
+%     Task 0 (not written) has the name "Project Initiation" and takes 0
+%     time to complete (expected, best, and worst).
+%     Task N+1 (also not written) has the name "Project Completion" where N
+%     is the highest written task number.  It likewise takes 0 time to
+%     complete (expected, best, and worst).
+%     The purpose of tasks 0 and N+1 are to ensure that there is a single
+%     first and last task without actually affecting scheduling.  Any task
+%     that has no other dependencies, depends on Task 0.  This may or may not
+%     be specified explicitly.
+%     Task N+1 depends on all other tasks so as to ensure that it captures
+%     the specific dependencies for the final tasks that are actually
+%     required.  In the example below, the final tasks are 10, 12, and 13.
+%     By having task N+1 depend on all tasks, it necessarily depends on those
+%     three tasks, and will ensure that the critical path algorithm will
+%     capture that.
+% (4) Dependencies between tasks begin after the identifier 'Dependencies'
+%     which should only appear once in the file and must be on a line of its
+%     own, with no leading whitespace.  Dependencies are specified as follows:
+%     Task Identifier , <Tasks on which it depends, comma separated>.  With
+%     the exception of the unwritten Task N+1, no task should depend on more
+%     than MAX_NUMBER_DEPENDENCIES tasks.
+%
+% Tasks must appear before dependencies.
+% Blank lines are ignored.
+%
+ 
+Tasks
+
+1 , 1 , 0.5 , 3.5 , Site preparation
+2 , 5, 3.2, 7.8, Foundation
+3 , 5, 3.2, 7.8, Drainage and Services (Electrical; Sewage; Water)
+4 , 5, 3.2, 7.8, Framing
+5 , 5, 3.2, 7.8, Roof
+6 , 5, 3.2, 7.8, Windows and Skylight(s)
+7 , 5, 3.2, 7.8, Plumbing
+8 , 5, 3.2, 7.8, Electrical
+9 , 5, 3.2, 7.8, Insulation
+10 , 5, 3.2, 7.8, Siding
+11 , 5, 3.2, 7.8, Drywall
+12 , 5, 3.2, 7.8, Painting/Carpets/Hardwood/Trim
+13 , 5, 3.2, 7.8, Inspection
+
+Dependencies
+
+1 , 0
+2 , 1
+3 , 1 
+4 , 2
+5 , 4
+6 , 4,5 
+7 , 3,4
+8 , 3,4,5
+9 , 7,8
+10 , 4,6
+11 , 7,8,9
+12 , 11
+13 , 9
